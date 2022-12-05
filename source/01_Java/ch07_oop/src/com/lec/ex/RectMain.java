@@ -1,6 +1,6 @@
 package com.lec.ex;
 
-public class RectMain {
+public class RectMain { // class명 반드시 대문자로 시작, 알파벳,숫자,_,$ 이지만 $는 오라클사에서만, _는 되도록 x
 	public static void main(String[] args) {
 		Rect r1 = new Rect(10,5);
 		Rect r2 = new Rect();
