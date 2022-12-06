@@ -1,0 +1,40 @@
+ch04-1 제어문 中 조건문
+
+1. 문장의 종류
+
+문장(statement 
+  │
+  └실행문
+   |    │
+   |    └순차문
+   |    │
+   |    └제어문
+   |	│
+   |	└조건문(if, switch)
+   |	│
+   |	└반복문(for, while, do~while)
+  └비실행문
+         |
+        └주석(// , /* */)
+
+2. if문 : 조건이 참일때 일정한 명령을 수행
+			if(조건식1) {
+				조건식1이 참일 때 실행할 명령문;
+			}else if(조건식2){
+				조건식1이 거짓이고 조건식2가 참일 때 실행할 명령문;
+			}else{
+				위의 조건식 둘 다 참이 아닐 때 실행할 명령문;
+			}
+
+3. switch문 : if~else if과 비슷함, 가독성 면에서 좋음
+			switch(num) {
+			case 1:
+				System.out.println("주사위 1번");break;
+			case 2:
+				System.out.println("주사위 2번");break;
+					ㆍ
+					ㆍ
+					ㆍ
+			default:
+				System.out.println("주사위 6번");break;
+			}

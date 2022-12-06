@@ -22,13 +22,14 @@ public class Student {
 	//sysout(s.infoString()) => \tÁ¤¿ì¼º\t100\t100\t100\t300\t100.00
 	public String infoString() {
 //		return "\t" + name + "\t" + kor + "\t" + eng + "\t" + mat + "\t" + tot + "\t" + avg
-		return String.format("\t%s\t%d\t%d\t%d\t%d\t%.1f\n", name, kor, eng, mat, tot, avg);
+		return String.format("\t%s\t%d\t%d\t%d\t%d\t%.1f", name, kor, eng, mat, tot, avg);
 		//s.infoPrint();
 	}
-	//setters
 	public void infoPrint() {
 		System.out.printf("\t%s\t%d\t%d\t%d\t%d\t%.1f\n", name, kor, eng, mat, tot, avg);
 	}
+	//setters
+	
 	public void setName(String name) {
 		this.name = name;
 	}
