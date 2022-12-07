@@ -7,8 +7,8 @@ public class ParentClass {
 	}
 	public void getPapaName() {
 		System.out.println("아빠 이름 : 홍길동");
+		System.out.println("엄마 이름 : 김길순");
 	}
 	public void getMamiName() {
-		System.out.println("엄마 이름 : 김길순");
 	}
 }
