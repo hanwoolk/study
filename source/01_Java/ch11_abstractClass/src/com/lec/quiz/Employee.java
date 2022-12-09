@@ -6,7 +6,7 @@ public abstract class Employee {
 		this.name = name;
 	}
 	public abstract int computePay();
-	public static final int computeIncentive() {
+	public final int computeIncentive() {
 		int temp = computePay();
 		if(temp>3000000)
 			return (int)(temp*0.05);
@@ -19,12 +19,6 @@ public abstract class Employee {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public int getComputeIncentive() {
-		return computeIncentive;
-	}
-	public void setComputeIncentive(int computeIncentive) {
-		this.computeIncentive = computeIncentive;
 	}
 	
 }
