@@ -18,24 +18,31 @@ while(){
 public class Ex06_Tel {
 	public static void main(String[] args) {
 		String tel;
-		int jjak;
-		String reverse;
-		String front;
-		String back;
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("전화번호를 입력하세요. (종료 :x)");
 			tel = scanner.next();
 			String[] arr = new String[tel.length()];
-			System.out.println("전화번호는 : " + tel);
-			for (int idx = 1; 0 < tel.length(); idx++) {
-				System.out.println(arr[idx]);
-				
-			}
-			for(int idx = tel.length() ; 0<= idx && idx < tel.length() ; idx--)
-				System.out.println(arr[idx]);
-			if(tel.equalsIgnoreCase("x"))
+			if (tel.equalsIgnoreCase("x")) {
+				System.out.println("종료");
 				break;
+			}
+			System.out.println("입력한 전화번호 : " + tel);
+			System.out.print("짝수번째 문자열  :");
+			for (int idx = 0; idx < tel.length(); idx++) {
+				System.out.print(" " + tel.charAt(idx));
+				idx += 1;
+			} // 짝수 for
+			System.out.println();
+			System.out.print("번호를 거꾸로 :");
+			for (int idx = tel.length() - 1; 0 <= idx; idx--) {
+				System.out.print(tel.charAt(idx));
+			} // 거꾸로 for
+			System.out.println();
+			System.out.print("전화번호 맨 앞자리 :" + tel.substring(0, 3));
+			System.out.println();
+			System.out.print("전화번호 맨 뒷자리 :" + tel.substring(8, 12));
+			System.out.println("\n");
 		}
 	}
 }
