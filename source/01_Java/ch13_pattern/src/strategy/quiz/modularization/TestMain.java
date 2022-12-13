@@ -1,7 +1,4 @@
 package strategy.quiz.modularization;
-import strategy2.modularization.Lecturer;
-import strategy2.modularization.Staff;
-import strategy2.modularization.Student;
 
 public class TestMain {
 	public static void main(String[] args) {

@@ -4,6 +4,8 @@ import strategy.quiz.interfaces.GetImpl;
 import strategy.quiz.interfaces.JobImpl;
 
 public class Person {
+	
+	public Person() {}
 	private String id;
 	private String name;
 	private JobImpl job;
@@ -20,7 +22,7 @@ public class Person {
 		get.get();
 	}
 	public void print() {
-		System.out.println("[ID]"+id+"[이름]"+name);
+		System.out.print("[ID]"+id+"\t[이름]"+name);
 	}
 	public void setJob(JobImpl job) {
 		this.job = job;
@@ -28,5 +30,4 @@ public class Person {
 	public void setGet(GetImpl get) {
 		this.get = get;
 	}
-	
 }
