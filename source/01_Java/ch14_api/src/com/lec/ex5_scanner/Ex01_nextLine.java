@@ -1,9 +1,11 @@
 package com.lec.ex5_scanner;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ex01_nextLine {
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 		System.out.print("³ªÀÌ : ");
 		int age = sc.nextInt();
