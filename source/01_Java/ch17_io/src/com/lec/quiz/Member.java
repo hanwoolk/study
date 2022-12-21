@@ -6,7 +6,7 @@ import java.util.Date;
 public class Member {
 	private	String name;
 	private String tel;
-	Date birthday;
+	private Date birthday;
 	private String address;
 	public Member(String name, String tel, Date birthday, String address) {
 		this.name = name;
@@ -17,7 +17,11 @@ public class Member {
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
-		return name + " " + tel + " " + birthday + "»ý " + address;
+		return name + " " + tel + " " + sdf.format(birthday) + "»ý " + address;
+	}
+	public String aaa() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return name + " " + tel + " " + sdf.format(birthday) + "»ý " + address;
 	}
 	public String getName() {
 		return name;
