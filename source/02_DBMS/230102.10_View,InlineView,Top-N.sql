@@ -126,3 +126,100 @@ SELECT ENAME, RANK() OVER(ORDER BY SAL DESC) RANK,
         ROW_NUMBER() OVER(ORDER BY SAL DESC) ROW_NUMBER
         FROM EMP;
 -- ROWNUM(테이블로부터 가져온 순서), INLINE-VIEW를 이용한 TOP-N
+SELECT ROWNUM, ENAME FROM EMP WHERE DEPTNO=20;
+SELECT ROWNUM, ENAME, SAL FROM EMP;
+SELECT ROWNUM, ENAME, SAL   -- 2 
+    FROM EMP                -- 1 
+    ORDER BY SAL;           -- 3
+    
+SELECT ROWNUM RK, ENAME, SAL
+    FROM (SELECT * FROM EMP ORDER BY SAL); -- 1등 ~ 꼴찌
+    
+    -- SAL을 기준으로 1등 ~ 5등
+SELECT ROWNUM RK, ENAME, SAL
+    FROM (SELECT ENAME, SAL FROM EMP ORDER BY SAL) A
+    WHERE ROWNUM <6;
+    -- SAL을 기준으로 6등 ~ 10등
+SELECT ROWNUM RK, ENAME, SAL
+    FROM (SELECT ENAME, SAL FROM EMP ORDER BY SAL) A
+    WHERE ROWNUM BETWEEN 6 AND 10;
+    
+-- TOP-N
+SELECT * FROM EMP ORDER BY SAL; -- 1단계
+SELECT ROWNUM RN, A.*
+    FROM  (SELECT * FROM EMP ORDER BY SAL) A; -- 2 단계
+SELECT ROWNUM, B.*
+    FROM (SELECT ROWNUM RN, A.*
+            FROM  (SELECT * FROM EMP ORDER BY SAL) A) B
+    WHERE RN BETWEEN 6 AND 10; -- 3단계 (TOP-N)
+    
+    -- EX. 이름을 알파벳 순서대로 정렬해서 6번째부터 ~ 10번째 출력(순서, 이름, 사번, JOB, MGR, HIREDATE)
+SELECT ROWNUM "ORDER", ENAME, EMPNO, JOB, MGR, HIREDATE
+    FROM (SELECT * 
+            FROM EMP ORDER BY ENAME);
+    
+SELECT *
+    FROM (SELECT ROWNUM "ORDER", ENAME, EMPNO, JOB, MGR, HIREDATE
+            FROM (SELECT * 
+                    FROM EMP ORDER BY ENAME))
+    WHERE "ORDER" BETWEEN 6 AND 10;
+    -- 입사순으로 11번째부터 15번째인 사원의 모든 필드 출력
+SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+    FROM (SELECT ROWNUM RN, A.*
+            FROM(SELECT * 
+                    FROM EMP ORDER BY HIREDATE)A)
+    WHERE RN BETWEEN 11 AND 15;
+
+-- <총 연습문제>
+-- 1. 부서명과 사원명을 출력하는 용도의 뷰, DNAME_ENAME_VU 를 작성하시오
+CREATE OR REPLACE VIEW DNAME_ENAME_VU
+    AS SELECT ENAME, DNAME 
+    FROM EMP E, DEPT D
+    WHERE E.DEPTNO = D.DEPTNO;
+SELECT * FROM DNAME_ENAME_VU;
+
+-- 2. 사원명과 직속상관명을 출력하는 용도의 뷰,  WORKER_MANAGER_VU를 작성하시오
+CREATE OR REPLACE VIEW WORKER_MANAGER_VU (WORKER, MANAGER)
+    AS SELECT E1.ENAME, E2.ENAME
+    FROM EMP E1, EMP E2
+    WHERE E1.MGR = E2.EMPNO;
+SELECT *FROM WORKER_MANAGER_VU;
+
+-- 3. 부서별 급여합계 등수를 출력하시오(부서번호, 급여합계, 등수). -- 학생 질문
+SELECT A.*, ROWNUM
+    FROM(SELECT DEPTNO, SUM(SAL) 
+            FROM EMP GROUP BY DEPTNO 
+            ORDER BY SUM(SAL) DESC)A;
+            
+-- 3-1. 부서별 급여합계 등수가 2~3등인 부서번호, 급여합계, 등수를 출력하시오.
+SELECT *
+    FROM (SELECT A.*, ROWNUM RK
+            FROM(SELECT DEPTNO, SUM(SAL) 
+                    FROM EMP GROUP BY DEPTNO 
+                    ORDER BY SUM(SAL) DESC)A)
+    WHERE RK BETWEEN 2 AND 3;
+    
+-- 4. 사원테이블에서 사번, 사원명, 입사일을 입사일이 최신에서 오래된 사원 순으로 정렬하시오
+SELECT EMPNO, ENAME, HIREDATE 
+    FROM EMP ORDER BY HIREDATE DESC;
+    
+-- 5. 사원테이블에서 사번, 사원명, 입사일을 입사일이 최신에서 오래된 사원 5명을 출력하시오
+SELECT EMPNO, ENAME, HIREDATE
+    FROM(SELECT ROWNUM RN, A.*
+            FROM(SELECT EMPNO, ENAME, HIREDATE 
+                    FROM EMP ORDER BY HIREDATE DESC)A)
+    WHERE RN BETWEEN 1 AND 5;
+    
+-- 6. 사원 테이블에서 사번, 사원명, 입사일을 최신부터 오래된 순으로 6번째로 늦은 사원부터 10번째 사원까지 출력
+SELECT EMPNO, ENAME, HIREDATE
+    FROM(SELECT ROWNUM RN, A.*
+            FROM(SELECT EMPNO, ENAME, HIREDATE 
+                    FROM EMP ORDER BY HIREDATE DESC)A)
+    WHERE RN BETWEEN 6 AND 10;
+    
+SELECT EMPNO, ENAME, HIREDATE
+    FROM(SELECT ROWNUM RN, A.*
+            FROM(SELECT * 
+                    FROM EMP ORDER BY HIREDATE DESC)A)
+    WHERE RN BETWEEN 6 AND 10;
+    

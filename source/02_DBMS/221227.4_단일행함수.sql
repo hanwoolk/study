@@ -50,7 +50,7 @@ SELECT ENAME||'은'||JOB||'다' FROM EMP;
 
 -- ③ SUBSTR(STR, 시작위치, 문자갯수) : STR의 시작위치부터 문자 객수만큼 추출하는것(시작위치가 1부터, 음수 이면 끝부터 자리수를 센다)
   -- SUBSTRB(STR,시작바이트위치, 문자바이트수)
-SELECT SUBSTR('ORACLE', 3, 2) FROM DUAL; -- 3번째 클자구터 2글자 추출
+SELECT SUBSTR('ORACLE', 3, 2) FROM DUAL; -- 3번째 글자부터 2글자 추출
 SELECT SUBSTRB('ORACLE', 3, 2) FROM DUAL; -- 3번째 바이트부터 2바이트 추출
 SELECT SUBSTR('데이터베이스', 4, 3) FROM DUAL; -- 4번째 글자부터 3글자 추출 (베이스)
 SELECT SUBSTRB('데이터베이스', 4, 3) FROM DUAL; --4번째 바이트부터 3바이트 추출 (이)
