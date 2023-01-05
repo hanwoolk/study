@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="13" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="138" y="42">
+<window height="1047" width="1269" x="658" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -30,6 +30,7 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
@@ -46,8 +47,11 @@
 <editor id="com.tomato.exerd.editor.DiagramEditor" name="sql작성.exerd" partName="sql작성.exerd" path="D:/KHW/source/02_DBMS/newProject/sql작성.exerd" title="sql작성.exerd" tooltip="newProject/sql작성.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/newProject/sql작성.exerd"/>
 </editor>
-<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="market.exerd" partName="market.exerd" path="D:/KHW/source/02_DBMS/newProject/market.exerd" title="market.exerd" tooltip="newProject/market.exerd" workbook="DefaultEditorWorkbook">
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="market.exerd" partName="market.exerd" path="D:/KHW/source/02_DBMS/newProject/market.exerd" title="market.exerd" tooltip="newProject/market.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/newProject/market.exerd"/>
+</editor>
+<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="person.exerd" partName="person.exerd" path="D:/KHW/source/02_DBMS/newProject/person.exerd" title="person.exerd" tooltip="newProject/person.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/newProject/person.exerd"/>
 </editor>
 </editors>
 <views>
@@ -60,7 +64,7 @@
 <element path="/newProject"/>
 </expanded>
 <selection>
-<element path="/newProject/sql작성.exerd"/>
+<element path="/newProject/person.exerd"/>
 </selection>
 </viewState>
 </view>
@@ -175,7 +179,7 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@fb5821" ratio="0.2987616" ratioLeft="193" ratioRight="453" relationship="4" relative="leftFolder">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.gef.ui.palette_view" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
@@ -192,6 +196,7 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/newProject/student.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/newProject/sql작성.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/newProject/market.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/newProject/person.exerd"/>
 </editors>
 <item historyLabel="dept_emp.exerd" index="0"/>
 <item historyLabel="book.exerd" index="1"/>
@@ -205,7 +210,8 @@
 <item historyLabel="book.exerd" index="1"/>
 <item historyLabel="student.exerd" index="2"/>
 <item historyLabel="sql작성.exerd" index="3"/>
-<item active="true" historyLabel="market.exerd" index="4"/>
+<item historyLabel="market.exerd" index="4"/>
+<item active="true" historyLabel="person.exerd" index="5"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -231,6 +237,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="person.exerd" tooltip="newProject/person.exerd">
+<persistable path="/newProject/person.exerd"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="market.exerd" tooltip="newProject/market.exerd">
 <persistable path="/newProject/market.exerd"/>
 </file>

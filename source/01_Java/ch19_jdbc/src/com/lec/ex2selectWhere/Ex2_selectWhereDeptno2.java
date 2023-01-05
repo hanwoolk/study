@@ -16,16 +16,16 @@ public class Ex2_selectWhereDeptno2 {
 	public static void main(String[] args) {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+		Scanner scanner = new Scanner(System.in);
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("열람하실 원하는 부서 번호는?");
 		int deptno = scanner.nextInt();
 		String sql = "SELECT * FROM DEPT WHERE DEPTNO="+deptno;
-		String sql2 = "SELECT E1.EMPNO , E1.ENAME WORKER, E1.SAL ,E2.ENAME MANAGER "
-					+ "FROM EMP E1, EMP E2 "  
-					+ "WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO="+deptno;
+		String sql2 = "SELECT E1.EMPNO , E1.ENAME WORKER, E1.SAL ,E2.ENAME MANAGER"
+					+ " FROM EMP E1, EMP E2"  
+					+ " WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO="+deptno;
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, "scott","tiger");
@@ -66,7 +66,6 @@ public class Ex2_selectWhereDeptno2 {
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
-			
-		}
+		}scanner.close();
 	}
 }

@@ -1,0 +1,7 @@
+--SELECT 부서명을 받아 해당 부서 사원을 출력(사번, 이름, 상사이름,
+--       급여, 급여등급, 상사가 없는 사람은 CEO)없으면 없다고
+SELECT E1.EMPNO, E1.ENAME WORKER, NVL(E2.ENAME,'CEO') MANAGER, E1.SAL, GRADE
+    FROM EMP E1, EMP E2, SALGRADE, DEPT D
+    WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO=D.DEPTNO 
+        AND E1.SAL BETWEEN LOSAL AND HISAL
+        AND DNAME = UPPER('SALES');
