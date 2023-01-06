@@ -48,29 +48,38 @@ public class Person {
 				fn = sc.next();
 				switch(fn) {
 				case "1" : // 이름, 직업명(jobs), 국,영, 수 받아 insert
+					String selectQuery = "SELECT COUNT(*) CNT FROM PERSON WHERE pNAME=?";
 					sql = "INSERT INTO PERSON " + 
 							"    VALUES (pNO.NEXTVAL,?, " + 
 							"    (SELECT jNO FROM JOB WHERE jNAME=?),?,?,?)";
 					try {
 						conn = DriverManager.getConnection(url,"scott","tiger");
-						pstmt = conn.prepareStatement(sql);
+						pstmt = conn.prepareStatement(selectQuery);
 						System.out.println("이름은?");
 						String pNAME = sc.next();
-						System.out.println("직업은?");
-						String jNAME = sc.next();
-						System.out.println("국어 성적은?");
-						int KOR = sc.nextInt();
-						System.out.println("영어 성적은?");
-						int ENG = sc.nextInt();
-						System.out.println("수학 성적은?");
-						int MAT = sc.nextInt();
-						// 2~6단계
 						pstmt.setString(1, pNAME);
-						pstmt.setString(2, jNAME);
-						pstmt.setInt(3, KOR);
-						pstmt.setInt(4, ENG);
-						pstmt.setInt(5, MAT);
-
+						rs = pstmt.executeQuery();
+						rs.next();
+						int cnt = rs.getInt("cnt");
+						if(cnt!=0) {
+							System.out.println("중복된 이름은 입력 불가");
+						} else {
+							System.out.println("직업"+jobs+"은?");
+							String jNAME = sc.next();
+							System.out.println("국어 성적은?");
+							int KOR = sc.nextInt();
+							System.out.println("영어 성적은?");
+							int ENG = sc.nextInt();
+							System.out.println("수학 성적은?");
+							int MAT = sc.nextInt();
+							// 2~6단계
+							pstmt.setString(2, jNAME);
+							pstmt.setInt(3, KOR);
+							pstmt.setInt(4, ENG);
+							pstmt.setInt(5, MAT);
+							int result = pstmt.executeUpdate();
+							System.out.println(result>0? "입력 성공" : "입력 실패");
+						}
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					} finally {
@@ -83,10 +92,11 @@ public class Person {
 					}
 					break;
 				case "2": // 직업명받아 직업 출력
-					sql = "SELECT ROWNUM||'등' RN2,pNAME ,jNAME,KOR,ENG,MAT,TOTAL" + 
-							"    FROM (SELECT PNAME||'('||RN1||'번)' pNAME ,jNAME,KOR,ENG,MAT,TOTAL" + 
-							"        FROM (SELECT ROWNUM RN1, pNAME,jNAME,KOR,ENG,MAT,KOR+ENG+MAT TOTAL " + 
-							"            FROM PERSON P, JOB J WHERE P.jNO = J.jNO) WHERE jNAME = ? ORDER BY TOTAL DESC)A";
+					sql = "SELECT ROWNUM RANK, A.*" + 
+							"  FROM (SELECT pNAME||'('||pNO||'번)' pNAME, jNAME, KOR, ENG, MAT, KOR+ENG+MAT TOTAL" + 
+							"            FROM PERSON P, JOB J" + 
+							"            WHERE P.jNO=J.jNO AND jNAME=?" + 
+							"            ORDER BY TOTAL DESC) A";
 					try {
 						// 2~6단계
 						conn = DriverManager.getConnection(url,"scott","tiger");
@@ -98,14 +108,14 @@ public class Person {
 						if(rs.next()) { // 출력
 							System.out.println("등수\t 이름(pNO)\t 직업\t 국어(kor)\t 영어(eng)\t 수학(mat)\t 총점");
 							do {
-								int RN2 = rs.getInt("RN2");
-								String pNAME = rs.getString("pNAME");
-								jNAME = rs.getString("jNAME");
-								int KOR = rs.getInt("KOR");
-								int ENG = rs.getInt("ENG");
-								int MAT = rs.getInt("MAT");
-								int TOTAL = rs.getInt("TOTAL");
-								System.out.printf("%d\t %s\t %s\t %d\t %d\t %d\t %d\n", RN2, pNAME, jNAME, KOR, ENG, MAT, TOTAL);
+								int 	RANK 	= rs.getInt("RANK");
+								String 	pNAME 	= rs.getString("pNAME");
+										jNAME 	= rs.getString("jNAME");
+								int 	KOR 	= rs.getInt("KOR");
+								int 	ENG 	= rs.getInt("ENG");
+								int 	MAT 	= rs.getInt("MAT");
+								int 	TOTAL 	= rs.getInt("TOTAL");
+								System.out.printf("%d등\t %s\t %s\t %d\t\t %d\t\t %d\t\t %d\n", RANK, pNAME, jNAME, KOR, ENG, MAT, TOTAL);
 							}while(rs.next());
 						}else {
 							System.out.println("해당 직업의 사람이 없습니다.");
@@ -124,12 +134,36 @@ public class Person {
 					}
 					break;
 				case "3":
-					sql = "";
+					sql = "SELECT ROWNUM RANK, A.*" + 
+							"  FROM (SELECT PNAME||'('||pNO||'번)' pNAME, jNAME, KOR, ENG, MAT, KOR+ENG+MAT TOTAL" + 
+							"            FROM PERSON P, JOB J" + 
+							"            WHERE P.jNO=J.jNO" + 
+							"            ORDER BY TOTAL DESC) A";
 					try {
-						// 2~6단계
+						conn = DriverManager.getConnection(url,"scott","tiger");
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery(sql);
+							System.out.println("등수\t 이름(pNO)\t 직업\t 국어(kor)\t 영어(eng)\t 수학(mat)\t 총점");
+							while(rs.next()) {
+								int RANK = rs.getInt("RANK");
+								String pNAME = rs.getString("pNAME");
+								String jNAME = rs.getString("jNAME");
+								int KOR = rs.getInt("KOR");
+								int ENG = rs.getInt("ENG");
+								int MAT = rs.getInt("MAT");
+								int TOTAL = rs.getInt("TOTAL");
+								System.out.printf("%d등\t %s\t %s\t %d\t\t %d\t\t %d\t\t %d\n", RANK, pNAME, jNAME, KOR, ENG, MAT, TOTAL);
+							}
 					} catch (Exception e) {
-						// TODO: handle exception
+						System.out.println(e.getMessage());
 					} finally {
+						try {
+							if(rs!=null) rs.close();
+							if(stmt!=null) stmt.close();
+							if(conn!=null) conn.close();
+						} catch (SQLException e) {
+							System.out.println(e.getMessage());
+						}
 						// 7단계 close
 					}
 					break;
