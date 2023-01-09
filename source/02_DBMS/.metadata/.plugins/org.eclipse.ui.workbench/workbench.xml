@@ -59,9 +59,6 @@
 </editor>
 </editors>
 <views>
-<view id="com.tomato.exerd.ui.views.thumbnail" partName="썸네일">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.views.ResourceNavigator" partName="네비게이터">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
 <filters>
@@ -74,6 +71,9 @@
 <element path="/newProject/supermarket.exerd"/>
 </selection>
 </viewState>
+</view>
+<view id="com.tomato.exerd.ui.views.thumbnail" partName="썸네일">
+<viewState/>
 </view>
 <view id="com.tomato.exerd.modelview3.ModelView3" partName="모델">
 <viewState/>
@@ -223,7 +223,6 @@
 <actionBarAdvisor/>
 <trimLayout>
 <trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="leftFolder"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@fb5821"/>
 </trimArea>
 <trimArea IMemento.internal.id="131072">

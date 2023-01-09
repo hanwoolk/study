@@ -6,27 +6,33 @@ public class CustomerDto {
 	private	String	cname;
 	private	int		cpoint;
 	private	int		camount;
-	private	String	clevelname;
+	private	String	levelname;
 	private	int		nextlevel;
+	
 	public CustomerDto() {}
-	public CustomerDto(int cid, String ctel, String cname, int cpoint, int camount, String clevelname) {
-		this.cid = cid;
+	
+	public CustomerDto(String ctel, String cname) { //회원가입용
 		this.ctel = ctel;
 		this.cname = cname;
-		this.cpoint = cpoint;
-		this.camount = camount;
-		this.clevelname = clevelname;
 	}
-	public CustomerDto(int cid, String ctel, String cname, int cpoint, int camount, String clevelname,
+	//검색 출력용
+	public CustomerDto(int cid, String ctel, String cname, int cpoint, int camount, String levelname,
 			int nextlevel) {
 		this.cid = cid;
 		this.ctel = ctel;
 		this.cname = cname;
 		this.cpoint = cpoint;
 		this.camount = camount;
-		this.clevelname = clevelname;
+		this.levelname = levelname;
 		this.nextlevel = nextlevel;
 	}
+	
+	@Override
+	public String toString() {
+		return cid +"\t" + ctel + "\t\t" + cname + "\t" +cpoint +"\t" + camount +
+					"\t" + levelname + "\t" +nextlevel;
+	}
+
 	public int getCid() {
 		return cid;
 	}
@@ -57,11 +63,11 @@ public class CustomerDto {
 	public void setCamount(int camount) {
 		this.camount = camount;
 	}
-	public String getClevelname() {
-		return clevelname;
+	public String getLevelname() {
+		return levelname;
 	}
-	public void setClevelname(String clevelname) {
-		this.clevelname = clevelname;
+	public void setLevelname(String levelname) {
+		this.levelname = levelname;
 	}
 	public int getNextlevel() {
 		return nextlevel;
@@ -69,5 +75,4 @@ public class CustomerDto {
 	public void setNextlevel(int nextlevel) {
 		this.nextlevel = nextlevel;
 	}
-	
 }
