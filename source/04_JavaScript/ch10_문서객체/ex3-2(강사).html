@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    h2, h2 {text-align: center;}
+  </style>
+  <style>
+    table {width:280px; height: 100px; margin: 10px auto;}
+  </style>
+  <script>
+    var color = ['red','orange','yellow','green','blue','navy', 'violet', 'white'];
+    var wrap;
+    var cnt=0;
+    window.onload = function(){
+      var tds = document.querySelectorAll('td');
+      for(var idx in tds){
+        tds[idx].style = 'background-color:'+color[idx];
+      }
+    };
+    function showMessage(n){
+      // 문서객체생성 방법 3번 이용(1_문서객체생성.html 참조)
+      if(cnt==0){ // 한번만 innerHTML
+        wrap = document.getElementById('wrap');
+        wrap.innerHTML += '<h2 class="message">야호 거의 끝났다</h2>';
+        var h2 = document.getElementsByClassName('message')[0];
+        document.body.style = 'background-color: black; color:' + color[n];
+        cnt ++;
+      }
+    }
+    function removeMassage(){
+      var message = document.getElementsByClassName('message')[0];
+      wrap = document.getElementById('wrap');
+      wrap.removeChild(message);
+      document.body.style.backgroundColor = 'white';
+      cnt--; 
+    }
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <h6>중간예제3. 마우스를 올리면 바탕화면에 해당 색 메세지가</h6>
+    <table>
+      <tr  onmouseout="removeMassage()">
+        <td onmouseover="showMessage(0)"></td>
+        <td onmouseover="showMessage(1)"></td>
+        <td onmouseover="showMessage(2)"></td>
+        <td onmouseover="showMessage(3)"></td>
+        <td onmouseover="showMessage(4)"></td>
+        <td onmouseover="showMessage(5)"></td>
+        <td onmouseover="showMessage(6)"></td>
+      </tr>
+    </table>
+
+  </div>
+</body>
+</html>
