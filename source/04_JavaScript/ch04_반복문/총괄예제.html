@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script>
+      var arr = [];
+      var sum = 0;
+      var wrongCnt = 0;
+      // var correctCnt = 0;
+      do {
+        answer = confirm("누적할래?");
+        if (answer == true) {
+          score = parseInt(prompt("누적할 점수?", "0~100"));
+          if (isNaN(score) || score == "" || score < 0 || score > 100) {
+            alert("점수를 잘못 입력하였습니다.");
+            wrongCnt++;
+          } else {
+            arr.push(score);
+            // sum += score;
+            // correctCnt++;
+          }
+        } else {
+          break;
+        }
+      } while (true);
+      for (i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      document.write(arr.length/*correctCnt*/ + wrongCnt + "번 입력<br>");
+      document.write("누적점수 : " + sum + "<br>");
+      document.write("점수를 제대로 입력한 횟수 : " + arr.length/*correctCnt*/ + "<br>");
+      document.write("점수를 잘못 입력한 횟수 : " + wrongCnt + "<br>");
+    </script>
+  </head>
+  <body></body>
+</html>

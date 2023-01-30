@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      img{
+        width:300px;
+      }
+    </style>
+    <script>
+      // const date = new Date();
+      // const hour = date.getHours();
+      const hour = new Date().getHours(); //0~23
+      if(hour<12){
+        document.write('상쾌한 오전입니다<br>');
+        document.write('<img src="am.jpg" alt="am사진" <br>');
+      }else{
+        document.write('따스한 오후입니다<br>');
+        document.write('<img src="pm.jpg" alt="pm사진" <br>');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

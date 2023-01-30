@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      #first,
+      #last {
+        width:340px;
+        height:300px;
+        border: 1px solid gray;
+      }
+      table {
+        float: left;
+        width: 80px;
+        border: 1px solid gray;
+        margin: 10px auto;
+      }
+      caption {
+        margin: 10px auto;
+        text-decoration: underline;
+        font-size: 1.3em;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
+    <script>
+      document.write('<div id="first">');
+      for (var i = 2; i < 6; i++) {
+        document.write("<table>");
+        document.write("<caption>" + i + "단</caption>");
+        for (var j = 1; j < 10; j++) {
+          document.write("<tr><td>" + i + "*" + j + "=" + i * j + "</td></tr>");
+        }
+        document.write("</table>");
+      }
+      document.write("</div>");
+      document.write('<div id="last">');
+      for (var i = 6; i < 10; i++) {
+        document.write("<table>");
+        document.write("<caption>" + i + "단</caption>");
+        for (var j = 1; j < 10; j++) {
+          document.write("<tr><td>" + i + "*" + j + "=" + i * j + "</td></tr>");
+        }
+        document.write("</table>");
+      }
+      document.write("</div>");
+    </script>
+  </head>
+  <body></body>
+</html>

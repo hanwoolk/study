@@ -1,0 +1,120 @@
+﻿
+#wrap {
+    width: 1000px;
+    border: 1px solid gray;
+    margin: 10px auto;
+    text-align: center;
+    position:relative;
+}
+
+p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#header, #nav, #contain, #footer {
+    width: 976px;
+    border: 1px solid gray;
+    margin: 10px auto;
+}
+
+#header {
+    background-color: yellow;
+    height: 100px;
+}
+
+    #header p {
+        vertical-align: middle;
+        height: 100px;
+        line-height: 100px;
+        margin: 0;
+    }
+
+#nav, #footer {
+    height: 100px;
+}
+
+    #nav ul {
+        overflow: hidden;
+        width: 934px;
+    }
+
+    #nav p {
+        height: 35px;
+        line-height: 35px;
+        margin: 0;
+    }
+
+    #nav ul li {
+        list-style: none;
+        float: left;
+        width: 170px;
+        background-color: lightpink;
+        height: 40px; /*서브메뉴 넣기위해 필요*/
+        line-height: 40px;
+        margin: 0 5px 0 5px;
+        font-weight: bold;
+    }
+
+        #nav ul li a {
+            text-decoration: none;
+            display:block;
+        }
+
+        #nav ul li:first-child {
+            border-radius: 20px 0 0 20px;
+        }
+
+        #nav ul li:last-child {
+            border-radius: 0 20px 20px 0;
+        }
+
+#contain {
+    overflow: hidden;
+    height: 300px;
+}
+
+    #contain > div {
+        border: 1px solid gray;
+    }
+
+    #contain #content {
+        float: left;
+        width: 731px;
+        height: 287px;
+        margin: 5px 5px 5px 10px;
+    }
+
+    #contain #banner {
+        float: left;
+        width: 209px;
+        height: 287px;
+        margin: 5px 10px 5px 5px;
+    }
+
+#footer {
+    background-color: yellow;
+}
+
+    #footer p {
+        vertical-align: middle;
+        height: 100px;
+        line-height: 100px;
+        margin: 0;
+    }
+#background_image {
+    background: url('back.jpg') right bottom no-repeat; /*기본적으로 left top임*/
+    /* position이 왼쪽에서 100%, 위쪽에서 100%위치에 배경 배치 */
+    background: url('back.jpg') 100% 100% no-repeat; /*위와 동일*/
+    background: url('back.jpg') 50% 100% no-repeat;
+    background-size: 120%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -9; /*겹쳤을 때 뒤로*/
+    opacity: 0.3;
+}

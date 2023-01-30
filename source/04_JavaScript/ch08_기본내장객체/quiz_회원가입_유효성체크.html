@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #contain {
+        width: 400px;
+        margin: 10px auto;
+        border: 2px solid #385d81;
+      }
+      p{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      table {
+        margin: 10px auto;
+      }
+      tr {
+        text-align: center;
+      }
+      tr td {
+        height: 30px;
+        margin: px auto;
+      }
+      input {
+        padding: 0 0 0 4px;
+        height: 30px;
+        border: 2px solid #385d81;
+        width: 160px;
+      }
+      #buttons input {
+        width: 80px;
+        height: 40px;
+        margin: 10px 5px;
+        background-color: rgb(50, 112, 227);
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function chk() {
+        var patternName = /[가-힣a-zA-Z]{2,}/;
+        var patternPw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~`!@#$%^&*()-_+=\\}{\[\]}]).{4,}/;
+        var patternMail =
+          /^[0-9a-zA-Z]([~!#\$%^&*()_+|\\\[\]\{\}`\,\.]*[0-9a-zA-Z][~!#\$%^&*()_+|\\\[\]\{\}`\,\.]*)*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+        var name = frm.name.value.trim();
+        var email = frm.mail.value.trim();
+        var pw = frm.pw.value.trim();
+        if (!name) {
+          alert('이름을 입력하세요');
+          frm.name.focus();
+          return false;
+        } else if (!patternName.test(name)) {
+          alert('이름을 바르게 입력하세요');
+          frm.name.focus();
+          return false;
+        //     2방법이나 3방법 추천
+        // }else if(mail.indexOf('@')==-1 || // @가 없음
+        //         mail.indexOf('@')==0 ||    // @가 맨앞
+        //         mail.lastIndexOf('@') == mail.length - 1 || // @가 맨뒤
+        //         mail.indexOf('@') != mail.lastIndexOf('@') || // @가 2개 이상 나옴
+        //         mail.indexOf('@') > mail.indexOf('.')){
+        //   alert('1방법.메일 형식을 확인하세요');
+        //   frm.mail.focus();
+        //   return false;
+        // }else if(!mail.match(patternMail)){
+        //   alert('2방법.메일 형식을 확인하세요');
+        //   frm.mail.focus();
+        //   return false;
+        } else if (!email) {
+          alert('이메일을 입력하세요');
+          frm.mail.focus();
+          return false;
+        } else if (!patternMail.test(email)) {
+          alert('올바른 이메일을 입력해주세요');
+          frm.mail.focus();
+          return false;
+        } else if (!pw) {
+          alert('비밀번호를 입력하세요');
+          frm.pw.focus();
+          return false;
+        } else if (!patternPw.test(pw)) {
+          alert('비밀번호는 소문자, 대문자, 숫자, 특수문자를 섞어서 4글자 이상 입력');
+          frm.pw.focus();
+          return false;
+        } else if (pw != frm.pwchk.value) {
+          alert('비밀번호가 일치하지 않습니다');
+          pw = '';
+          frm.pwChk.value = '';
+          frm.pw.focus();
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="contain">
+      <form action="" method="get" name="frm" onsubmit="return chk()">
+        <table>
+          <tr>
+            <td><p>이 름</p></td>
+            <td colspan="2">
+              <input type="text" name="name" placeholder="특수문자와 숫자 못 와" />
+            </td>
+          </tr>
+          <tr>
+            <td><p>메 일</p></td>
+            <td colspan="2"><input type="text" name="mail" placeholder="메일형식에 맞추세요" /></td>
+          </tr>
+          <tr>
+            <td><p>비밀번호</p></td>
+            <td colspan="2"><input type="password" name="pw" /></td>
+          </tr>
+          <tr>
+            <td><p>비밀번호</p></td>
+            <td colspan="2"><input type="password" name="pwchk" /></td>
+          </tr>
+          <tr id="buttons">
+            <td><input type="submit" value="회원가입" /></td>
+            <td><input type="reset" value="취소" /></td>
+            <td>
+              <a href="#"><input type="button" value="로그인" /></a>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

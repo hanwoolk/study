@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="화면구현평가1.css" rel="stylesheet" typre="text/css" />
+    <script>
+        function chk() {
+            if (frm.name.value.trim().length < 2) {
+                alert("이름은 2글자 이상 입력하셔야합니다.");
+                frm.name.focus();
+                return false;
+            } else if (frm.id.value.trim().length < 4) {
+                alert("아이디는 4글자 이상 필수입력입니다.");
+                frm.id.focus();
+                return false;
+            } else if (!frm.pw.value) {
+                alert("비밀번호를 입력하세요");
+                frm.pw.focus();
+                return false;
+            } else if (!frm.pwChk.value) {
+                alert("비밀번호를 입력하세요");
+                frm.pwChk.focus();
+                return false;
+            } else if (frm.pw.value != frm.pwChk.value) {
+                alert("비밀번호와 비번 확인이 같지 않습니다. 확인해주세요");
+                frm.pw.value = "";
+                frm.pw.value = "";
+                frm.pw.focus();
+                return false;
+            } else if (!frm.tel.value) {
+                alert("전화번호를 입력하세요");
+                frm.tel.focus();
+                return false;
+            } else if (!frm.email.value) {
+                alert("이메일을 입력하세요");
+                frm.email.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="get" name="frm" onsubmit="return chk()">
+        <table id="table1">
+            <caption><h1>회원가입</h1></caption>
+            <tr id="fieldset1">
+                <td>
+                    <fieldset>
+                        <legend>필수입력</legend>
+                        <table id="table1-1">
+                            <tr>
+                                <td>이 름<strong>*</strong></td>
+                                <td><input type="text" name="name" size="18" placeholder="이름은 2글자 이상" /> </td>
+                            </tr>
+                            <tr>
+                                <td>아이디<strong>*</strong></td>
+                                <td><input type="text" name="id" size="18" placehomder="ID는 4글자 이상" /> </td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호<strong>*</strong></td>
+                                <td><input type="password" name="pw" size="18" /> </td>
+                            </tr>
+                            <tr>
+                                <td>비번확인<strong>*</strong></td>
+                                <td><input type="password" name="pwChk" size="18" /> </td>
+                            </tr>
+                            <tr>
+                                <td>전화<strong>*</strong></td>
+                                <td>
+                                    <input type="text" name="tel" size="18" placeholder="xx-xxx-xxxx/000-0000-0000/xxx xxxx xxxx"
+                                           pattern="\d{2,3}[-\s][0-9]{3,4}[-\s][0-9]{4}" title="전화번호 형식을 지켜주세요" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>이메일<strong>*</strong></td>
+                                <td>
+                                    <input type="email" name="email" size="18" placeholder="id@domain.com 또는 co.kr"
+                                           pattern="\D[\w\W]+@\w+(\.\w+){1,2}"
+                                           title="맨앞에 숫자가 오면 안됩니다" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr id="fieldset2">
+                <td>
+                    <fieldset>
+                        <legend>추가 입력 사항</legend>
+                        <table id="table1-2">
+                            <tr>
+                                <td>결혼유 무</td>
+                                <td>
+                                    <input type="radio" name="marry" value="noMarry" />미혼
+                                    <input type="radio" name="marry" value="yesMarry" />기혼
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>자식</td>
+                                <td>
+                                    <input type="checkbox" name="child" value="son" />아들
+                                    <input type="checkbox" name="child" value="daughter" />딸
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>지역</td>
+                                <td>
+                                    <select name="region">
+                                        <option>경기</option>
+                                        <option>서울</option>
+                                        <option>부산</option>
+                                        <option>일산</option>
+                                        <option>안산</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr id="submit&reset" >
+                <th>
+                    <br />
+                    <input type="submit" value="가입" />
+                    <input type="reset" value="취소" />
+                </th>
+            </tr>
+            <tr id="hr">
+                <td>
+                    <br />
+                    <hr />
+                </td>
+            </tr>
+            <tr id="footer">
+                <td>
+                    <footer>
+                        <center>
+                            <br />
+                            <p>서울시 서대문구 신촌로 141 은하빌딩 203호</p>
+                            <p>Copyright ⓒ XX All right reserved</p>
+                        </center>
+                    </footer>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

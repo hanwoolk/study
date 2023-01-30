@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap{
+            width:600px;
+            margin: 0 auto;
+            border: 1px solid gray;
+            padding:10px;
+        }
+        #wrap p:nth-child(2n) {
+            background:lightpink;
+        }
+        #wrap p:nth-child(1){
+            font-size:.8em /*원래사이즈의 0.8배의 문자크기*/
+        }
+        #wrap p:nth-child(2){
+            font-size:100%;/*문자의 경우 원래 사이즈의 몇%, 
+                            width, height, padding, margin...등의 경우: 부모의 몇%*/
+        }
+        #wrap p:nth-child(3){
+            font-size:24px;
+        }
+        #wrap p:nth-child(4){
+            font-size:2em;
+        }
+        #wrap p:nth-child(5) {
+            font-size: 2.5em;
+        }
+        #wrap > p > span{
+            display:block; /*display속성을 block으로 수정하면 block형 태그로 전환*/
+            color:dimgray;
+            font-size:0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <span>입력 2023. 1. 13. 10:36</span>
+        </p>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <span>입력 2023. 1. 13. 10:36</span>
+        </p>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <span>입력 2023. 1. 13. 10:36</span>
+        </p>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <span>입력 2023. 1. 13. 10:36</span>
+        </p>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <span>입력 2023. 1. 13. 10:36</span>
+        </p>
+    </div>
+</body>
+</html>

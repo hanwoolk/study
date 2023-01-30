@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+    function Student(name, kor, mat){ // 생성자 함수
+      this.name = name;
+      this.kor  = kor;
+      this.mat  = mat;
+    }
+    Student.prototype.getSum = function(){
+      return this.kor + this.mat;
+    };
+    Student.prototype.getAvg = function(){
+      return this.getSum() / 2;
+    };
+    Student.prototype.toString = function(){
+      return this.name + '(' + this.kor + ',' + this.mat + ',' + this.getSum() + ',' + this.getAvg() + ')<br>';
+    }
+    //생성자함수와 prototype
+    var students = [new Student('홍길동', 80, 90),
+                    new Student('김길동', 100, 100),
+                    new Student('박동군', 70, 91),
+                    new Student('유길동', 99, 49),
+                    new Student('이길동', 80, 50),]
+    var originalStudents = [];
+    students.forEach(function(data){
+      originalStudents.push(data);
+    });
+    document.write('<h3>정렬전</h3>');
+    originalStudents.forEach(function(data,idx){
+      document.write(idx + ':' + data);
+    });
+    students.sort();
+    document.write('<h3>ascii 코드순 정렬 후 </h3>');
+    students.forEach(function(data, idx){
+      document.write(idx + ':' + data);
+    });
+    students.sort(function(left, right){
+      return right.getSum() - left.getSum(); // 양수면 left가 앞, 음수면 right가 앞
+    });
+    document.write('<h3> 총점 기준 내림차순 정렬</h3>');
+    students.forEach(function(data, idx){
+      document.write(idx + ':' + data);
+    });
+    students.sort(function(left, right){
+      return left.kor - right.kor; 
+    });
+    document.write('<h3> 국어점수 기준 오름차순 정렬</h3>');
+    students.forEach(function(data, idx){
+      document.write(idx + ':' + data);
+    });
+    students.sort(function(left, right){
+      return right.getAvg() - left.getAvg(); 
+    });
+    document.write('<h3> 평점 기준 top3 추출</h3>');
+    students.slice(0,3).forEach(function(data, idx){
+      document.write(idx + ':' + data);
+    });
+</script>
+</head>
+<body>
+
+</body>
+</html>

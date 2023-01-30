@@ -1,0 +1,23 @@
+다운 받은 반정형 데이터 파일의 종류
+
+1. *.csv 파일 형태
+name,age
+'홍길동',20
+'신길동',30
+
+2. *.json 파일 형태
+{'name':'홍길동','age':20},
+{'name':'신길동','age':30},
+
+3. *.xml 파일 형태
+<person>
+   <name>홍길동</name>
+   <age>20</age>
+</person>
+<person>
+   <name>신길동</name>
+   <age>30</age>
+</person>
+
+4. *.xlsx 파일
+5. *.txt 파일

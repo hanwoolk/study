@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      table {
+        margin: 0 auto;
+      }
+      tr td {
+        width: 50px;
+        height: 100px;
+        border: 1px solid gray;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+    <script>
+      var col = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple'];
+      window.onload = function () {
+        color = function (o) {
+          var h1 = document.createElement('h1');
+          var textNode = document.createTextNode('야호 거의 끝');
+          h1.appendChild(textNode);
+          h1.setAttribute('class', 'messege');
+          document.body.appendChild(h1);
+          h1.style.color = col[o];
+          document.body.style.backgroundColor = 'black';
+        };
+        for (var i = 0; i < col.length; i++) {
+          var td = document.getElementsByTagName('td');
+          td[i].style.backgroundColor = col[i];
+        }
+        out = function () {
+          var messege = document.getElementsByClassName('messege')[0];
+          document.body.removeChild(messege);
+          document.body.style.backgroundColor = 'white';
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr onmouseout="out()">
+        <td onmouseover="color(0)"></td>
+        <td onmouseover="color(1)"></td>
+        <td onmouseover="color(2)"></td>
+        <td onmouseover="color(3)"></td>
+        <td onmouseover="color(4)"></td>
+        <td onmouseover="color(5)"></td>
+        <td onmouseover="color(6)"></td>
+      </tr>
+    </table>
+  </body>
+</html>

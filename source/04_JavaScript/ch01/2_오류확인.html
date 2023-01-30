@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* int i = 20; i = "홍길동"; */
+      var al_pha=20; //변수선언시 var를 사용하면 전역변수, var 안써도 var 할당한 것과 같음.
+      alert(1); //submit이 이루어진 이후라서 f12키를 눌러도 에러를 못 볼 경우
+      console.log(1);
+      alert("al_pha값은 " + al_pha); // 고의적인 error
+      console.log(2);
+      al_pha = "Hello";
+      console.log(3);
+      alert("바뀐 al_pha값은 " + al_pha);
+      console.log(4);
+    </script>
+  </head>
+  <body>
+    <script>
+      document.write("윗 스크립트에서 선언된 변수 al_pha값은 "+al_pha)
+    </script>
+  </body>
+</html>

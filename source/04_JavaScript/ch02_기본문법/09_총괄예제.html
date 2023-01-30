@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      // 사용자로부터 prompt를 이용해서 국어점수(0~100), 영어점수를 입력받아 평균 출력
+      // 유효한 점수를 입력받지 않을경우 다시 입력받음.
+      // do~while, prompt("국어는?"), Number or parseInt, isNaN
+      do {
+        korStr = prompt("국어점수를 입력하세요", "0~100");
+        kor = parseInt(korStr);
+        if (isNaN(kor) || korStr == "" || kor>100 || kor<0) {
+            alert("알맞은 점수를 입력하세요");
+          } else {
+            engStr = prompt("영어점수를 입력하세요", "0~100");
+            eng = parseInt(engStr);
+            if (isNaN(eng) || engStr == "" || eng>100 || eng<0) {
+                alert("점수를 입력하세요");
+              }else{
+                document.write('입력한 국어점수 : '+kor+'점'+'<br>')
+                document.write('입력한 영어점수 : '+eng+'점'+'<br>')
+                document.write('총점수 : '+(kor+eng)+'점'+'<br>')
+                document.write('평균점수 : '+(kor+eng)/2+'점'+'<br>')
+                break;
+              }
+            }
+          }while (true);
+    </script>
+  </head>
+  <body></body>
+</html>

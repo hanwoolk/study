@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      div{
+        margin : 0 auto;
+        width:350px;
+        border : 1px solid blue;
+      }
+      h1{
+        text-align: center;
+      }
+      p{
+        text-align: center;
+      }
+      button{
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      var site = [
+        'https://www.naver.com',
+        'http://www.daum.net',
+        'http://www.google.com',
+        'http://youtube.com',
+      ];
+      window.onload = function(){
+        gosite=function(i){
+          location=site[i]
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>중간예제2. 메뉴</h1>
+      <p>
+        <button onclick="gosite(0)" >네이버</button>
+        <button onclick="gosite(1)" >다음</button>
+        <button onclick="gosite(2)" >구글</button>
+        <button onclick="gosite(3)" >유투브</button>
+      </p>
+    </div>
+  </body>
+</html>

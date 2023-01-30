@@ -1,0 +1,142 @@
+/*초기화*/
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+li {
+  list-style: none;
+}
+/**************nav**************/
+nav {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav #nav_left ul {
+  width: 1000px;
+  float: left;
+}
+nav #nav_left ul li {
+  float: left;
+  width: 130px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 10px 50px;
+}
+nav #nav_left ul li:first-child {
+  background-color: #fdeada;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+nav #nav_left ul li a,
+nav #nav_right ul li a {
+  font-size: 1.6em;
+}
+nav #nav_right ul {
+  width: 690px;
+  float: right;
+}
+nav #nav_right ul li {
+  width: 130px;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 10px 50px;
+}
+/************content***************/
+#content {
+  width: 99%;
+  margin: 0 auto;
+}
+#content #title {
+  margin: 20px 10px 10px 30px;
+}
+#content #title p {
+  font-size: 1.8em;
+}
+#content hr {
+  width: 100%;
+  margin: 0 auto;
+}
+#content #lnb {
+  float: left;
+}
+#content #lnb ul {
+  margin: 20px 0 0 30px;
+  width: 280px;
+}
+#content #lnb ul li {
+  padding-left: 40px;
+  font-size: 1.6em;
+  border: 1px solid gray;
+  height: 60px;
+  line-height: 60px;
+}
+#content #lnb ul li a {
+  display: block;
+}
+#content #lnb ul li:hover {
+  background-color: #fdeada;
+  cursor: pointer;
+  font-weight: bold;
+}
+#content #my_content {
+  /* width:1200px; */
+  width: 80%;
+  height: 730px;
+  border: 1px solid gray;
+  margin: 20px 40px 40px 352px;
+}
+#content #sub_title {
+  font-size: 1.8em;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+}
+#content #modify table {
+  margin: 80px auto 0 auto;
+}
+
+#my_content #modify table tr td p {
+  margin: 20px;
+  width: 200px;
+  font-size: 1.6em;
+}
+#my_content #modify table tr td input {
+  width: 600px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+}
+#my_content #modify .submit {
+  text-align: center;
+  margin: 50px 0 0 0;
+}
+#my_content #modify .submit input[type="submit"] {
+  text-align: center;
+  font-size: 1.6em;
+  width: 90px;
+  height: 40px;
+}
+
+/**********footer***************/
+footer p {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  margin: 0 0 10px 0;
+  background-color: #fdeada;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid gray;
+  font-size: 1.6em;
+  width: 99%;
+  text-align: center;
+}
