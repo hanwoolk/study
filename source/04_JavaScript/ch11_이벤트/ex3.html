@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      table {
+        width: 500px;
+        margin: 10px auto;
+        background-color: darkgreen;
+      }
+      td {
+        background-color: white;
+        padding: 50px;
+        text-align: center;
+      }
+      #center{
+        background-color: yellow;
+      }
+      
+    </style>
+    <script>
+      window.onload = function () {
+        //좌측화살표아스키(37),상화살표아스키(38)
+        //우측화살표아스키(39), 하화살표아스키(40)
+        var tds = document.getElementsByTagName('td');
+        var key = event.keyCode;
+        var idx = 4;
+        tds[idx].style.backgroundColor = 'yellow';
+        var positionIdx = document.querySelector('p.position')
+        this.onkeyup = function(){
+          switch(event.keyCode){
+            case 37: //좌 (37)
+            if(idx%3 > 0){
+            idx--;
+          }else{
+            idx +=2;
+          } break;
+          case 38: //상(38)
+          if(idx>2){
+            idx-=3;
+          }else{
+            idx+=6;
+          }break;
+          case 39: //우(39)
+          if(idx%3 < 2){
+            idx+=1;
+          }else{
+            idx-=2;
+          }break;
+          case 40: //하(40)
+          if(idx<6){
+            idx+=3;
+          }else{
+            idx-=6;
+          }break;
+          default:
+            return;
+        }
+        for (var i=0 ; i<tds.length ; i++){
+          tds[i].style.backgroundColor = 'white';
+        }
+        tds[idx].style.backgroundColor = 'yellow';
+        positionIdx.innerHTML = '현 위치 : '+idx;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td id="center">4</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+      </tr>
+    </table>
+    <p class="position">현 위치 : 4</p>
+  </body>
+</html>

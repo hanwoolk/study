@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+    </style>
+    <script>
+      var img = document.getElementsByTagName('img')[0];
+      window.onclick = function () {
+        var x=event.offsetX
+        var y=event.offsetY
+        document.body.innerHTML = 'sccreen좌표 : ' + event.screenX + ', ' + event.screenY + '<br>';
+        document.body.innerHTML += 'offset좌표 : ' + x + ', ' + y + '<br>';
+        var img = document.createElement('img');
+        img.setAttribute('src', 'img/car.gif');
+        document.body.appendChild(img);
+        img.style.position = 'absolute';
+        img.style.left = x+'px';
+        img.style.top = y+'px';
+      };
+    </script>
+  </head>
+  <body>
+    <p>클릭하면 클릭한 곳에 말이 옮겨지고 좌표가 출력됩니다</p>
+  </body>
+</html>
