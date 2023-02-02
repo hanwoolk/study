@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import "./Subject.css";
-class Subject extends Component {
-  render() {
-    console.log('subject.render')
-    // this.props.title='React';     readOnly
-    return (
+
+class Subject extends Component{
+  rendor(){
+    return(
       <header className="subject_h">
         <h1>
           <a href="/" onClick={function(event){
@@ -12,8 +10,8 @@ class Subject extends Component {
             this.props.onChangePage();
           }.bind(this)}>
             {this.props.title}
-            </a>
-          </h1>
+          </a>
+        </h1>
         {this.props.sub}
       </header>
     );
