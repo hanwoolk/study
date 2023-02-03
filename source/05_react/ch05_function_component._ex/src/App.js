@@ -40,6 +40,7 @@ function App() {
         setContents(_contents);
         setSelectedId(nextId);
         setNextId(nextId+1);
+        setMode('read');
       }}></CreateContent>
   }else if(mode === 'update'){
     let _content;
@@ -51,6 +52,7 @@ function App() {
       }
     }
     _article = <UpdateContent data={_content} onUpdate={(_title, _body)=>{
+
       let _contents = [...contents];
       for(var idx=0; idx<_contents.length; idx++){
         if(_contents[idx].id === selectedId){
@@ -78,6 +80,16 @@ function App() {
       }}></TOC>
       <Control
         onChangeMode={(_mode)=>{
+          if(_mode === 'update' || _mode === 'delete'){
+            if(contents.length === 0){
+              if(window.confirm(' 데이터가 없어 수정 또는 삭제 불가\n 데이터를생성하시겠습니까?')){
+                setMode('create');
+              }else{
+              setMode('welcome')
+            }
+              return;
+            }
+          }
           if(_mode === 'delete'){
             if(window.confirm('삭제 복구 불가합니다. 삭제하시겠습니까?')){
               let _contents = [...contents];
@@ -89,6 +101,7 @@ function App() {
                     _id = _contents[_contents.length-1].id;
                   }else{
                     _id = 0;
+                    setMode('welcome');
                   }//if
                   setContents(_contents);
                   setMode('read');

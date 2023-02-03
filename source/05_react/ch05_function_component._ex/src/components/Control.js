@@ -11,6 +11,7 @@ const Control = (props) => {
       </li>
       <li>
         <button onClick={() => {
+
             props.onChangeMode("update");
           }}>
           UPDATE
