@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
+import "./Subject.css";
 class Subject extends Component{
-  rendor(){
+  render(){
+    console.log('subject.render')
     return(
       <header className="subject_h">
         <h1>
@@ -17,5 +18,4 @@ class Subject extends Component{
     );
   }
 }
-
 export default Subject;

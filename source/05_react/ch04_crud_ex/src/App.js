@@ -101,7 +101,7 @@ class App extends Component{
             selected_content_id : Number(id),
           });
         }.bind(this)}></TOC>
-        <Contrl onChangePage={function(_mode){
+        <Control onChangePage={function(_mode){
           if(_mode === "delete"){
             if(window.confirm('삭제하시면 복구 불사합니다. 삭제 진행할까요?')){
               var _contents = Array.from(this.state.contents);
@@ -130,7 +130,7 @@ class App extends Component{
               mode : _mode,
             });
           }
-        }.bind(this)}></Contrl>
+        }.bind(this)}></Control>
         {this.getContent()}
       </div>
     );

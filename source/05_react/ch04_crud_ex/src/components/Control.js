@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from "react";
 import './Control.css'
 class Control extends Component{
   render(){
@@ -6,27 +6,27 @@ class Control extends Component{
       <ul className="Control">
         <li>
           <button onClick={function(){
-            this.props.onChangPage("create");
+            this.props.onChangePage('create');
           }.bind(this)}>
             CREATE
           </button>
         </li>
         <li>
           <button onClick={function(){
-            this.props.onChangePage("update");
+            this.props.onChangePage('update');
           }.bind(this)}>
             UPDATE
           </button>
         </li>
         <li>
           <button onClick={function(){
-            this.props.onChangePage("delete");
+            this.props.onChangePage('delete');
           }.bind(this)}>
             DELETE
           </button>
         </li>
       </ul>
-    );
+    )
   }
 }
 
