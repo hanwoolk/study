@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	form{
+	text-align:center;
+	}
+	input[type="number"]{
+	width:40px;
+	}
+</style>
+<script>
+/* 	function chk() {
+		var Su1 = Number(frm.su1.value);
+		var Su2 = Number(frm.su2.value);
+		if(!Su1 || !Su2){
+			alert("수를 입력하세요.");
+			return false;
+		}else if( Su1<0 || Su2<0){
+			alert("양수를 입력하세요.");
+			frm.su1.value="";
+			frm.su2.value="";
+			return false;
+		}else if (Su1 > Su2) {
+			alert("작은 수 먼저 입력하세요.");
+			frm.su1.focus();
+			return false;
+		}
+		return true;
+	} */
+	window.onload = function(){
+		document.querySelector("form").onsubmit = function(){
+			var su1 = document.querySelector('input[name="su1"]').value;
+			var su2 = document.querySelector('input[name="su2"]').value;
+			if(!su1){
+				alert("첫번째 수를 입력하세요.");
+				su1.focus();
+				return false;
+			}else if(!su2){
+				alert("두번째 수를 입력하세요.");
+				su2.focus();
+				return false;
+			}
+			var s1=Number(su1);
+			var s2=Number(su2);
+			if(s1<0 || s2<0){
+				alert("양수를 입력하세요.");
+				frm.su1.value="";
+				frm.su2.value="";
+				return false;
+			}else if(s1>s2){
+				alert("작은 수 먼저 입력하세요.");
+				frm.su1.focus();
+				return false;
+			}
+		};
+	};
+</script>
+</head>
+<body>
+	<form name="frm" action="6_su2gugudanOutput.jsp" method="get"
+		>
+		<p>
+			단수 <input type="number" name="su1" >단 ~ <input
+				type="number" name="su2"> 단까지
+		</p>
+		<input type="submit" value="구구단 출력">
+	</form>
+</body>
+</html>
