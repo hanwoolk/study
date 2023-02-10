@@ -1,0 +1,11 @@
+@charset "UTF-8";
+span{
+	color:red;
+}
+*{
+	text-align:center;
+}
+button{
+	background-color:skyblue;
+	padding:5px;
+}

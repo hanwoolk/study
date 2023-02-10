@@ -1,0 +1,7 @@
+@charset "UTF-8";
+h{
+	text-align: center;
+}
+p:nth-child(3){
+	text-align:center;	
+}

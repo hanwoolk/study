@@ -5,23 +5,26 @@
 	<title>Insert title here</title>
 	<script>
 		window.onload = function(){
-			document.querySelector('form').onsubmit = function(){
-				var su = Number(document.querySelector('input[type="text"]').value);
-				if(!su || su<2){
-					alert("1 이상의 정수를 입력하세요")
+			document.querySelector("form").onsubmit = function(){
+				var su = document.getElementById("su");
+				var suNum = Number(su.value.trim());
+				if(isNaN(suNum) || suNum <=0 || suNum%1!=0){
+					alert('자연수를 입력하세요');
+					su.value = '';
+					su.focus();
 					return false;
 				}
 			};
 		};
-		//../Quiz3
 	</script>
 </head>
 <body>
-	<fieldset>
-	<legend>누적하고 싶은 최종 수 입력</legend>
-		<form action="../Quiz3" method="get">
-			<p><input type="text" name="su"><input type="submit" value="누적결과">
-		</form>
-	</fieldset>
+	<form action="../Quiz3">
+		<fieldset>
+			<legend>누적하고 싶은 최종 수 입력</legend>
+			<input type="text" name="su" id="su">
+			<input type="submit" value="누적결과">
+		</fieldset>
+  </form>
 </body>
 </html>

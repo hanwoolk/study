@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+ 		window.onload = function(){
+			document.querySelector('form').onsubmit = function(){
+				var bg = document.getElementsByName('bg');
+				if(bg.length==0){
+					alert("색상을 선택하셔야 합니다");
+					return false;
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<fieldset>
+		<legend>배경색 선택(GET방식)</legend>
+			<form action="../Quiz4" method="get">
+				빨강<input type="radio" name="bg" value="red">
+				주황<input type="radio" name="bg" value="orange">
+				노랑<input type="radio" name="bg" value="yellow">
+				초록<input type="radio" name="bg" value="green">
+				파랑<input type="radio" name="bg" value="blue">
+				남색<input type="radio" name="bg" value="navy">
+				보라<input type="radio" name="bg" value="purple">
+				<input type="submit" value="선택확인">
+			</form>
+	</fieldset>
+	<fieldset>
+		<legend>배경색 선택(POST방식)</legend>
+			<form action="../Quiz4" method="post">
+				빨강<input type="radio" name="bg" value="red">
+				주황<input type="radio" name="bg" value="orange">
+				노랑<input type="radio" name="bg" value="yellow">
+				초록<input type="radio" name="bg" value="green">
+				파랑<input type="radio" name="bg" value="blue">
+				남색<input type="radio" name="bg" value="navy">
+				보라<input type="radio" name="bg" value="purple">
+				<input type="submit" value="선택확인">
+			</form>
+	</fieldset>
+</body>
+</html>
