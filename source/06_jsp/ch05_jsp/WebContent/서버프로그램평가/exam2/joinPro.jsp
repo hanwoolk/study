@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.sql.Date"%>
@@ -21,7 +22,10 @@ String name = request.getParameter("name");
 String id = request.getParameter("id");
 String pwStr = request.getParameter("pw");
 String birth = request.getParameter("birth");
-/* Date birth1 = sdf.parse(birthStr); */
+
+Timestamp birthTimestamp = Timestamp.valueOf(birth + " 00:00:00");
+Date birth1 = Date.valueOf(birth);
+
 String hobby = request.getParameter("hobby");
 String gender = request.getParameter("gender");
 String email = request.getParameter("email");
@@ -38,7 +42,7 @@ out.print("<h2>name :" + name+ "</h2>");
 out.print("<h2>id :" +id + "</h2>");
 out.print("<h2>pw :" +pw + "</h2>");
 out.print("<h2>birth :" +birth + "</h2>");
-out.print("<h2>birth2 :" +birth + "</h2>");
+out.print("<h2>birth2 :" +birthTimestamp + "</h2>");
 out.print("<h2>hobby :" +hobby+ "</h2>");
 out.print("<h2>gender :" +gender + "</h2>");
 out.print("<h2>email :" +email + "</h2>");
