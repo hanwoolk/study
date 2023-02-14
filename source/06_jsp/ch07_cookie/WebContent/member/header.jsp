@@ -45,13 +45,13 @@
 			<ul>
 				<li><a href="<%=conPath %>/member/join.jsp">회원가입</a></li>
 				<li><a href="<%=conPath %>/member/login.jsp">로그인</a></li>
-				<li><a href="<%=conPath %>/index.jsp">홈</a></li>
+				<li><a href="<%=conPath %>/">홈</a></li>
 			</ul>
 			<%}else {%> <!-- 로그인 한 헤더 화면 -->
 			<ul>
 				<li><a href="<%=conPath %>/member/cookieList.jsp">쿠키리스트</a></li>
 				<li><a href="<%=conPath %>/member/logout.jsp">로그아웃</a></li>
-				<li><a href="#"><%=id %></a>님</li>
+				<li><a href="<%=conPath %>/"><%=id %></a>님</li>
 			</ul>
 			<%}%>
 		</div>

@@ -12,16 +12,19 @@
 			line-height:600px;
 			font-size:32px;
 			text-align:center;
-			width:400px;
+			width:1000px;
 			margin:0 auto;
+			border:1px solid #D4A190;
+		}
+		#mainform_wrap h1{
+			color:#D4A190;
 		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../member/header.jsp"/>
 	<div id="mainform_wrap">
-		CONTENT
-		
+		<h1>main 화면</h1>
 	</div>
 	<jsp:include page="../member/footer.jsp"/>
 </body>

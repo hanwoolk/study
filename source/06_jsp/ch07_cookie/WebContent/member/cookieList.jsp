@@ -9,7 +9,6 @@
 	<style>
 		#mainform_wrap{
 			height:600px;
-			line-height:600px;
 			font-size:32px;
 			text-align:center;
 			width:400px;
@@ -20,7 +19,19 @@
 <body>
 	<jsp:include page="../member/header.jsp"/>
 	<div id="mainform_wrap">
-		CONTENT
+		<br><br>
+		<%
+			Cookie[] cookies = request.getCookies();
+			if(cookies!=null){
+				for(Cookie cookie:cookies){
+					String cname = cookie.getName();
+					String cvalue = cookie.getValue();
+					out.println("<p>" + cname + "(쿠키이름) : " + cvalue + "(쿠키값)</p>");
+				}
+			}else{
+				out.println("<p>존재하는 쿠키가 없습니다</p>");
+			}
+		%>
 		
 	</div>
 	<jsp:include page="../member/footer.jsp"/>
