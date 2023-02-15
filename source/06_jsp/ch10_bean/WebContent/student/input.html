@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		table{
+			margin:0 auto;
+			text-align:center;
+		}
+		tr td{
+			text-align:center;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			document.querySelector("form").onsubmit = function(){
+				var studentNum = document.getElementsByName('studentNum')[0];
+				var name = document.getElementsByName('name')[0];
+				var score = document.getElementsByName('score')[0];
+				if(!studentNum.value){
+					alert('필수 입력사항입니다');
+					studentNum.focus();
+					return false;
+				}else if(!name.value){
+					alert('필수 입력사항입니다');
+					name.focus();
+					return false;
+				}
+				var select = document.querySelectorAll('select');
+				for(var idx = 0 ; idx<select.length ; idx++){
+					option = select[idx].querySelectorAll('option');
+					if(option[0].selected){ // 0번째 option 선택시 submit 제한
+						alert(option[0].value+'을 선택하세요');
+						select[idx].focus();
+						return false;
+					}
+				}	//for
+				if(!score.value){
+					alert('필수 입력사항입니다');
+					score.focus();
+					return false;
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+		<form action="step6.jsp">
+			<table>
+				<tr>
+					<th>학번</th><td><input type="text" name="num"></td>
+				</tr>
+				<tr>
+					<th>이름</th><td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<th>학년</th><td><select name="grade">
+													<option value="학년"></option>
+													<option value="1">1학년</option>
+													<option value="2">2학년</option>
+													<option value="3">3학년</option>
+													<option value="4">4학년</option>
+													<option value="5">5학년</option>
+													<option value="6">6학년</option>
+													</select>
+											</td>
+				</tr>
+				<tr>
+					<th>반</th><td><select name="classNum">
+												<option value="반"></option>
+												<option value="A">A반</option>
+												<option value="B">B반</option>
+												<option value="C">C반</option>
+												</select>
+										</td>
+				</tr>
+				<tr>
+					<th>점수</th><td><input type="number" name="score"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="입력"></td>
+				</tr>
+			</table>
+		</form>
+</body>
+</html>
