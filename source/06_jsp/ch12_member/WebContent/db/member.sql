@@ -25,16 +25,16 @@ SELECT * FROM MEMBER WHERE ID='aaa';
 INSERT INTO MEMBER
         (ID, PW, NAME, PHONE1, PHONE2, PHONE3, GENDER, EMAIL, BIRTH, ADDRESS, RDATE)
     VALUES
-        ('aaa', '111', '홍길동', '02', '716', '7777', 'm', 'hong@hong.com', '1955-12-12', '서울', SYSDATE);
-ALTER SESSION SET NLS_DATE_FORMAT = 'RR/MM/DD';
+        ('zzz', '111', '지길동', '02', '777', '7777', 'm', 'hong@hong.com', '1955-12-12', '서울', SYSDATE);
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 -- 3. 로그인 : public int loginCheck(String id,String pw)
-SELECT * FROM MEMBER WHERE ID='aaa';
+SELECT id,pw FROM MEMBER WHERE ID='aaa';
 
 -- 4. ID로 dto 가져오기 : 로그인 성공시 session에 setAttribute / 회원정보 수정시 회원정보 가져오기
 --          :public MemberDto getMember(String id)
 SELECT * FROM MEMBER WHERE ID = 'aaa';
 
--- 회원정보수정 : public int modifyMember(MemberDto dto)
+-- 5. 회원정보수정 : public int modifyMember(MemberDto dto)
 UPDATE MEMBER SET PW ='111',
                   NAME = '홍길숙',
                   PHONE1 = '031',
