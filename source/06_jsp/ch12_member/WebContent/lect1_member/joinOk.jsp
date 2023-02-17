@@ -30,7 +30,7 @@
 				session.setAttribute("id",dto.getId());
 		%>
 				<script>
-					alert("회원가이 감사합니다")
+					alert("회원가입 감사합니다")
 					location.href= 'login.jsp';
 				</script>
 		<%	}else{
