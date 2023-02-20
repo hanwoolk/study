@@ -15,7 +15,7 @@ CREATE TABLE MEMBER(
     RDATE   DATE            NOT NULL --가입일
 );
 SELECT * FROM MEMBER;
--- 1. 회원가입기 ID 중복체크 : public int confirmId(String id)
+-- 1. 회원가입시 ID 중복체크 : public int confirmId(String id)
 SELECT * FROM MEMBER WHERE ID='aaa';
 -- SELECT COUNT(*) FROM MEMBER WHERE ID='aaa';
 
@@ -45,6 +45,5 @@ UPDATE MEMBER SET PW ='111',
                   BIRTH  = '1995-12-12',
                   ADDRESS = '경기도 안양'
             WHERE ID ='aaa';
-SELECT * FROM MEMBER;
 COMMIT;
-
+SELECT * FROM MEMBER;
