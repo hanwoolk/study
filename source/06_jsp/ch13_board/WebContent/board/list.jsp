@@ -36,7 +36,7 @@
 					if(dto.getReadCount() > 10){
 						out.println("<img src='"+conPath+"/img/hot.gif'>");	
 					}
-					out.println("<a href='"+conPath+"/board/content.jsp'>"+dto.getContent()+"</a>");
+					out.println("<a href='"+conPath+"/board/content.jsp?num="+dto.getNum()+"'>"+dto.getSubject()+"</a>");
 					out.println("</td>");
 					//메일
 					String email = dto.getEmail();
