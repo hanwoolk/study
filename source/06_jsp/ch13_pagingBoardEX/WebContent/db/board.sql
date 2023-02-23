@@ -100,4 +100,4 @@ INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_IND
             
             
             
-            
+   commit;         
