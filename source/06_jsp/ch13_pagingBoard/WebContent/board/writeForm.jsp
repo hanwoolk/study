@@ -9,6 +9,11 @@
  <link href="<%=conPath %>/css/style.css" rel="stylesheet">
 </head>
 <body>
+<%
+///////////pageNum 추가///////////
+String pageNum = request.getParameter("pageNum");
+/////////////////////////////////
+%>
 	<form action="<%=conPath %>/board/writePro.jsp" method="post">
 		<table>
 			<caption>게시판</caption>		
@@ -39,7 +44,7 @@
 					<input type="submit" value="글쓰기" class="btn">
 					<input type="reset" value="취소" class="btn">
 					<input type="button" value="목록" class="btn"
-								 onclick="location.href='<%=conPath %>/board/list.jsp'">
+								 onclick="location.href='<%=conPath %>/board/list.jsp?pageNum=<%=pageNum%>'">
 				</td>
 			</tr>
 		</table>

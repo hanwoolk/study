@@ -19,10 +19,14 @@ SELECT * FROM BOARD;
 -- 1. 글 갯수
 SELECT COUNT(*) FROM BOARD;
 -- 2. 글 목록(글 그룹이 최신인 글이 위로)
-SELECT * FROM BOARD ORDER BY NUM DESC;
+SELECT * FROM BOARD ORDER BY NUM DESC; --★★★★★★
 -- 2. 글 목록(20개씩 topN)
 SELECT * 
     FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM BOARD ORDER BY NUM DESC) A)
+    WHERE RN BETWEEN 11 AND 20;   --★★★★★★
+-- 2-2 답글 탑엔
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP) A)
     WHERE RN BETWEEN 11 AND 20;
 -- 3. 글쓰기(원글쓰기) 
     -- 글번호(글 갯수)
@@ -55,9 +59,45 @@ COMMIT;
 DELETE FROM BOARD WHERE NUM=1 AND PW='111';
 ROLLBACK;
 
---조회수 조작
-UPDATE BOARD SET READCOUNT = 20 WHERE NUM=1;
-COMMIT;
-SELECT * FROM BOARD;
+-- 답변글
+SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP ASC;
+-- 145번글(원글)
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(145, '홍','원글1','본문',NULL,'111',145,0,0,'167,0,0,1');
+--145의 1번째 답글달기
+    -- 답변글 추가 전단계(엑셀의 ⓐ단계) 
+UPDATE BOARD SET RE_STEP = RE_STEP+1 
+    WHERE REF=145 AND RE_STEP>0; --8. 답변글 추가 전 단계 
+    
+    -- 답변글의 답글 추가 전단계(엑셀의 ⓐ단계 원글 REF:145 원글의 RE_STEP=2, 원글의 RE_INDENT=1)  
+UPDATE BOARD SET RE_STEP = RE_STEP+1 
+    WHERE REF=145 AND RE_STEP>2;
+    -- 답변글 INSERT ( REF=145, RE_STEP = 1, RE_INDENT = 1)
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(146, '홍','원글1-답1','본문','R@R.COM','111',145,1,1,'167,0,0,1');
+    -- 답변글의 답변글 INSERT ( REF=145, RE_STEP = 1, RE_INDENT = 1)
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(150, '김','원글1-답2-답1','본문','K@R.COM','111',145,3,2,'167,0,0,1');            
+--145의 2번째 답글달기
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(147, '김','원글1-답2','본문','K@R.COM','111',145,1,1,'167,0,0,1');
+ROLLBACK;
+---- test용 원글, 답변글            
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(148, '박','원글2','본문',NULL,'111',148,0,0,'167,0,0,1');            
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES(149, '추','원글1-답3','본문','K@R.COM','111',145,1,1,'167,0,0,1');            
+            
+DELETE FROM BOARD WHERE RE_STEP=4;        
+            
 
-
+-- 답글의 답글 전단계       
+UPDATE BOARD SET RE_STEP = RE_STEP+1 WHERE REF=145 AND RE_STEP>1;      
+-- 답변글의 답변글 INSERT ( REF=145, RE_STEP = 1, RE_INDENT = 1)
+INSERT INTO BOARD (NUM, WRITER, SUBJECT, CONTENT, EMAIL, PW, REF, RE_STEP,RE_INDENT,IP)
+            VALUES((SELECT NVL(MAX(NUM),0)+1 FROM BOARD), '김','원글1-답2-답1','본문','K@R.COM','111',145,2,2,'167,0,0,1');   
+            
+            
+            
+            
+            
