@@ -58,7 +58,7 @@
 				</tr>
 				<tr>
 					<th><label for="cbirth">생년월일</label></th>
-					<td><input type="date" name="tempbirth" id="cbirth" required="required"></td>
+					<td><input type="date" name="tempCbirth" id="cbirth" required="required"></td>
 				</tr>
 				<tr>
 					<th>성별</th>
@@ -75,7 +75,7 @@
 						<input type="submit" value="가입하기" class="joinBtn_style">
 						<input type="reset" value="다시하기" class="joinBtn_style">
 						<input type="button" value="로그인" class="joinBtn_style" 
-											onclick="location.href='login.jsp'">
+											onclick="location.href='loginForm.jsp'">
 					</td>
 				</tr>
 			</table>

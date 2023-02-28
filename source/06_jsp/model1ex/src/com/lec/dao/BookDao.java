@@ -39,13 +39,13 @@ public class BookDao {
 		return conn;
 	}
 	public ArrayList<BookDto> listBook(int startRow, int endRow) {
-		ArrayList<BookDto>  books   = null;
+		ArrayList<BookDto>  books   = new ArrayList<BookDto>();
 		Connection			conn	= null;
 		PreparedStatement	pstmt	= null;
 		ResultSet			rs		= null;
 		String sql = "SELECT *  " + 
 				"    FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM BOOK ORDER BY BRDATE DESC) A) " + 
-				"    WHERE RN BETWEEN ? AND ?;";
+				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

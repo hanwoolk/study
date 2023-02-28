@@ -3,6 +3,7 @@
 <%
 	String conPath = request.getContextPath();
 	String msg = request.getParameter("msg");
+	
 %> 
 <!DOCTYPE html>
 <html>
@@ -40,13 +41,16 @@
 				<tr>
 					<td colspan="2">
 						<%if(msg!=null){ %>
+							<script>
+								alert('<%=msg%>');
+							</script>
 							<p id="login_findIdPw">
 							아이디/비밀번호를 잊으셨나요?</p>
 						<%} %>
 					</td>
 				</tr>
 			</table>
-			<p id="login_join">아직 회원이 아니신가요? <a href="join.jsp">회원가입</a></p>
+			<p id="login_join">아직 회원이 아니신가요? <a href="joinForm.jsp">회원가입</a></p>
 		</form>
 	</div><br>
 	<jsp:include page="../main/footer.jsp"/><%--jsp실행한 결과 가져옴 --%>
