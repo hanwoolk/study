@@ -35,9 +35,9 @@
 	<%	}else{ // 회원가입 실패%>
 				<script>
 					alert('회원가입이 실패되었습니다. 길이 제한이 있습니다');
-					// history.back();
-					location.href = '<%=conPath%>/customer/joinForm.jsp';
-				</script>
+				// history.back();
+				location.href = '<%=conPath%>/customer/joinForm.jsp';
+			</script>
 	<%	}%>
 	<%}else{// 중복된 ID라서 join.jsp로%>
 			<script>

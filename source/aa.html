@@ -1,0 +1,19 @@
+<script src="
+https://cdn.jsdeliver.net/npm/verbal-expressions@1.0.2/dist/vaerbalexpressions.min.js"></script>
+
+<script>
+  var c = VerEx()
+    .startOfLine()
+    .range("0", "9")
+    .repeatPrevious(3)
+    .maybe("-")
+    .startOfLine()
+    .range("0", "9")
+    .repeatPrevious(4)
+    .maybe("-")
+    .startOfLine()
+    .range("0", "9")
+    .repeatPrevious(4)
+    .endOfLine();
+  console.log(c.test("010-1234-1234"));
+</script>
