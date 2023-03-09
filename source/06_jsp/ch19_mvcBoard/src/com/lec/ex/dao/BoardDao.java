@@ -322,7 +322,7 @@ public class BoardDao {
 			pstmt.setInt(4, bgroup);
 			pstmt.setInt(5, bstep+1);
 			pstmt.setInt(6, bindent+1);
-			pstmt.setString(6, bip);
+			pstmt.setString(7, bip);
 			pstmt.executeUpdate();
 			result = SUCCESS;
 			System.out.println("답변글쓰기 성공");

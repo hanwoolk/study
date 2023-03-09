@@ -2,22 +2,21 @@ package com.lec.ex.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.lec.ex.dao.BoardDao;
 
-public class BWriteService implements Service {
+public class BModifyService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// bname, btitle, bcontent 파라미터 받고 bip도 가져와서 db에 write
+		int bid = Integer.parseInt(request.getParameter("bid"));
 		String bname = request.getParameter("bname");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		String bip = request.getRemoteAddr(); //127.0.0.1;
-		HttpSession session = request.getSession();
+		String bip = request.getRemoteAddr();
 		BoardDao bDao = new BoardDao();
-		request.setAttribute("writeResult", bDao.write(bname, btitle, bcontent, bip));
+		int modifyResult = bDao.modify(bid, bname, btitle, bcontent, bip);
+		request.setAttribute("modifyResult", modifyResult);
 	}
 
 }
