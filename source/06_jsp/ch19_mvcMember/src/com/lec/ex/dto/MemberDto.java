@@ -1,19 +1,18 @@
 package com.lec.ex.dto;
-
 import java.sql.Date;
-
+import java.sql.Timestamp;
 public class MemberDto {
-	private	String	mid;
-	private	String	mpw;
-	private	String	mname;
-	private	String	memail;
-	private	String	mphoto;
-	private	Date	mbirth;
-	private	String	maddress;
-	private	Date	mrdate;
-	public MemberDto() {}
+	private String mid;
+	private String mpw;
+	private String mname;
+	private String memail;
+	private String mphoto;
+	private Date   mbirth;
+	private String maddress;
+	private Timestamp mrdate;
+	public MemberDto() { }
 	public MemberDto(String mid, String mpw, String mname, String memail, String mphoto, Date mbirth, String maddress,
-			Date mrdate) {
+			Timestamp mrdate) {
 		this.mid = mid;
 		this.mpw = mpw;
 		this.mname = mname;
@@ -65,10 +64,10 @@ public class MemberDto {
 	public void setMaddress(String maddress) {
 		this.maddress = maddress;
 	}
-	public Date getMrdate() {
+	public Timestamp getMrdate() {
 		return mrdate;
 	}
-	public void setMrdate(Date mrdate) {
+	public void setMrdate(Timestamp mrdate) {
 		this.mrdate = mrdate;
 	}
 	@Override
@@ -76,5 +75,4 @@ public class MemberDto {
 		return "MemberDto [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", memail=" + memail + ", mphoto="
 				+ mphoto + ", mbirth=" + mbirth + ", maddress=" + maddress + ", mrdate=" + mrdate + "]";
 	}
-	
 }

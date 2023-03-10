@@ -5,23 +5,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lec.ex.dao.MemberDao;
+import com.lec.ex.dto.MemberDto;
 
 public class MLoginService implements Service {
 
 	@Override
-	public void excute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
-		String mname = request.getParameter("mname");
-		session.setAttribute("mid", mid);
-		session.setAttribute("mpw", mpw);
-		session.setAttribute("mname", mname);
-		MemberDao mDao = new MemberDao();
-		request.setAttribute("loginResult", mDao.login(mid, mpw));
-		System.out.println(mDao.login(mid, mpw));
-		System.out.println(mid + mpw);
-
+		MemberDao mDao = MemberDao.getInstance();
+		int result = mDao.loginCheck(mid, mpw);
+		if(result==MemberDao.LOGIN_SUCCESS) { // 로그인 성공
+			HttpSession session = request.getSession();
+			MemberDto member = mDao.getMember(mid);
+			session.setAttribute("member", member);
+		}else { // 로그인 실패
+			request.setAttribute("loginErrorMsg", "아이디와 비번을 확인하세요");
+		}
 	}
-
 }
