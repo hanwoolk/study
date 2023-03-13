@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		p, h1{text-align:center;}
+		
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.4.js"></Script>
+	<script>
+		$(document).ready(function(){
+			/* 1단계  [ x ] + [ x ] = [ 답 ]
+				 2단계: [ x ] @ [ x ] = [ 답 ] 연산자가 [+,-,*,/] 중에서 random
+				 3단계: 
+						1. [ x ] + [ x ] = [ 답 ]
+						2. [ x ] + [ x ] = [ 답 ]
+						3. [ x ] + [ x ] = [ 답 ]
+						4. [ x ] + [ x ] = [ 답 ]
+						5. [ x ] + [ 0 ] = [ Infinity 무조건 정답  ]
+					5문제를 count처리 / 채점해봐를 클릭하면 점수와 문제를 푼 시간을 출력
+						ex. 80점/ 24초 */
+			//////////////////////////////////////////////문제
+			var opArr=['+','-','*','/'];
+			var ops = [];
+			var n1s = [];
+			var n2s = [];
+			for(var i=1; i<=5; i++){
+				n1s = $('input[name="n'+i+'"]').val(Math.trunc(Math.random()*10)); //0 ~ 9
+			}
+			for(var j=6; j<=10; j++){
+				n2s = $('input[name="n'+j+'"]').val(Math.trunc(Math.random()*10)); //0 ~ 9
+			}
+			for(var o=1; o<=3; o++){
+				ops=(opArr[Math.trunc(Math.random()*4)]);
+			}
+			array.forEach(function(item, idx){
+				document.body.innerHTML += '<p><input type="text" name='+n1s[idx]+' size="5" reeadonly="readonly">'+ops[idx]+'<input type="text" name='+n2s[idx]+' size="5" reeadonly="readonly">';
+			});
+			///////////////////////////////////////////// 리셋
+			$('button#reset').click(function(){
+				$('input[name="answer"]').val("");
+			});
+			////////////////////////////////////////////// 정답 버튼
+			$('button#cal').click(function(){
+				for(var i=1; i<=10; i++){
+					var ans = Math.trunc(eval((Number($('input[name="n"+i]').val())+op+Number($('input[name="n"+i]').val()))));
+					
+				}
+				if(ans == $('input[name="answer"]').val()){
+					$('.result').html('정답')
+				}else{
+					$('.result').html('오답'+ans)
+					
+				}
+			});
+		});
+		/////////////////////////////////////////////////
+	</script>
+</head>
+<body>
+	<p>
+		<input type="text" name="n1s1" size="5" readonly="readonly">
+		<span id='op1'></span>
+		<input type="text" name="n2s2" size="5" readonly="readonly">
+		=
+		<input type="text" placeholder="답" name="answer" size="5">
+	</p>
+	<p> 
+		<input type="text" name="n1s2" size="5" readonly="readonly">
+		<span id='op2'></span>
+		<input type="text" name="n2s2" size="5" readonly="readonly">
+		=
+		<input type="text" placeholder="답" name="answer" size="5">
+	</p>
+	<p> 
+		<input type="text" name="n1s3" size="5" readonly="readonly">
+		<span id='op3'></span>
+		<input type="text" name="n2s3" size="5" readonly="readonly">
+		=
+		<input type="text" placeholder="답" name="answer" size="5">
+	</p>
+	<p>
+		<input type="text" name="n1s4" size="5" readonly="readonly">
+		<span id='op4'></span>
+		<input type="text" name="n2s4" size="5" readonly="readonly">
+		=
+		<input type="text" placeholder="답" name="answer" size="5">
+	</p>
+	<p> 
+		<input type="text" name="n1s5" size="5" readonly="readonly">
+		<span id='op5'></span>
+		<input type="text" name="n2s5" size="5" readonly="readonly">
+		=
+		<input type="text" placeholder="답" name="answer" size="5">
+	</p>
+	<p>
+		<button id="reset">다시해봐</button>
+		<button id="cal">채점해봐</button>
+	</p>
+	<hr>
+	<h1 class="result"></h1>
+</body>
+</html>

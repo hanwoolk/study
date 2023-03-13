@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<style>
+		h1{text-align:center;}
+		table td{width : 100px; height:100px; background-color:#AAFFAA;}
+		.tdRed{background-color:red;}
+		.tdDduk{background-image:url("img/dduk.jpg"); background-size:100%;}
+		p{text-align:center;}
+		div{ text-align:center;}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.4.js"></Script>
+	<script>
+		$(document).ready(function(){
+			var ddukIdx = parseInt(Math.random()*9)
+			$('td').each(function(idx, item){
+				$(this).click(function(){
+					$('td').removeClass('tdDduk');
+					$('td').removeClass('tdRed');
+					if(ddukIdx==idx){
+						$(this).addClass('tdDduk');
+						$('p').text('축하축하 맞췄어요')
+						$('input').val('축하축하 맞췄어요');
+					}else{
+						$(this).addClass('tdRed');
+						$('p').text('거기가 아니에요 비밀인데 '+ddukIdx);
+						$('input').val('거기가 아니에요 비밀인데 '+ddukIdx);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>연습문제1. 떡이 있는 곳을 맞춰봐</h1>
+	<table>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
+	<p>선택한 곳이 맞는지 답 뿌리는 곳</p>
+	<div><input type="text" value="선택한 곳이 맞는지 답 뿌리는 곳"></div>
+</body>
+</html>
