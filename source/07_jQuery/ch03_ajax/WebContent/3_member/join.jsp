@@ -29,7 +29,7 @@
   			} //if
   		});// keyup event
   		
-  		$('#pwChk').keyup(function(){
+  		$('#pw, #pwChk').keyup(function(){
   			var pw = $('#pw').val();
   			var pwChk = $('#pwChk').val();
   			if(pw == pwChk){
