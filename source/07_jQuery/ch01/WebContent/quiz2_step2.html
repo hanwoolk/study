@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style>
-		p, h1{text-align:center;}
-		
+		p, h1 {text-align: center;}
+		button{padding:10px; margin: 10px 30px;}
 	</style>
-	<script src="https://code.jquery.com/jquery-3.6.4.js"></Script>
+	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
-			/* 1단계  [ x ] + [ x ] = [ 답 ]
-				 2단계: [ x ] @ [ x ] = [ 답 ] 연산자가 [+,-,*,/] 중에서 random
-				 3단계: 
-						1. [ x ] + [ x ] = [ 답 ]
-						2. [ x ] + [ x ] = [ 답 ]
-						3. [ x ] + [ x ] = [ 답 ]
-						4. [ x ] + [ x ] = [ 답 ]
-						5. [ x ] + [ 0 ] = [ Infinity 무조건 정답  ]
-					5문제를 count처리 / 채점해봐를 클릭하면 점수와 문제를 푼 시간을 출력
-						ex. 80점/ 24초 */
-						//
-			var opArr=['+','-','*','/'];
-			var op=opArr[Math.trunc(Math.random()*4)];
-			$('input[name="n1"]').val(Math.trunc(Math.random()*10)); //0 ~ 9
+			/* 1단계 : [ x ] + [ x ] = [ 답 ]
+			   2단계 : [ x ] @ [ x ] = [ 답 ] 연산자가 [+,-,*,/] 중에서 random
+			   3단계 : 
+				   1. [ x ] @ [ x ] = [ 답 ]
+			     2. [ x ] @ [ x ] = [ 답 ]
+			     3. [ x ] @ [ x ] = [ 답 ]
+			     4. [ x ] @ [ x ] = [ 답 ]
+			     5. [ x ] / [ 0 ] = [ Infinity ]
+			   5 문제를 count 처리 / 채점해봐를 클릭하면  점수와 문제를 푼 시간을 출력
+			      ex. 80점 / 24초
+			*/
+			$('input[name="n1"]').val(Math.trunc(Math.random()*10)); // 0 ~ 9
 			$('input[name="n2"]').val(Math.trunc(Math.random()*10));
-			$('span').text(op);
-			$('button#reset').click(function(){
-				$('input[name="answer"]').val("");
-			});
+			var opArray = ['+','-','*','/'];
+			var opIdx = parseInt(Math.random()*opArray.length); // 0~3
+			$('.operation').html('<b>'+opArray[opIdx]+'</b>');
+			
+			// 채점해봐 click event
 			$('button#cal').click(function(){
-				var ans = Math.trunc(eval((Number($('input[name="n1"]').val())+op+Number($('input[name="n2"]').val()))));
-				if(ans == $('input[name="answer"]').val()){
-					$('.result').html('정답')
+				var n1 = Number($('input[name="n1"]').val());
+				var n2 = Number($('input[name="n2"]').val());
+				var answerTemp = [n1+n2, n1-n2, n1*n2, n1/n2 ];
+				
+				var answer = answerTemp[opIdx];
+				if(!isFinite(answer)){
+					$('.result').html('0으로 나눠서 죄송 정답 : ' + answer).css('color','blue');
+				}else if ($('input[name="answer"]').val() == answer) {
+					$('.result').html('맞았습니다').css('color','blue');
 				}else{
-					$('.result').html('오답'+ans)
-					
+					$('.result').html('틀렸습니다. 정답 : ' + answer).css('color','red');
 				}
+			});
+			// 다시해봐 click event
+			$('button#reset').click(function(){
+				$('input[name="n1"]').val(Math.trunc(Math.random()*10)); // 0 ~ 9
+				$('input[name="n2"]').val(Math.trunc(Math.random()*10));
+				opIdx = parseInt(Math.random()*opArray.length); // 0~3
+				$('.operation').html('<b>'+opArray[opIdx]+'</b>');
+				$('input[name="answer"]').val('');
+				$('.result').html('');
+				//location.reload();
 			});
 		});
 	</script>
 </head>
 <body>
-	<p> 1단계:
-		<input type="text" name="n1" size="5" readonly="readonly">
-		<span></span>
+	<p> 2단계 : 
+		<input type="text" name="n1" size="5" readonly="readonly"> 
+		<span class="operation"></span>
 		<input type="text" name="n2" size="5" readonly="readonly">
 		=
 		<input type="text" placeholder="답" name="answer" size="5">
@@ -57,3 +71,11 @@
 	<h1 class="result"></h1>
 </body>
 </html>
+
+
+
+
+
+
+
+
