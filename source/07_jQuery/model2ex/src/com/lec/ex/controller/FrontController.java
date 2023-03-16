@@ -10,6 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.ex.service.ALoginService;
+import com.lec.ex.service.BoardContentService;
+import com.lec.ex.service.BoardListService;
+import com.lec.ex.service.BoardModifyService;
+import com.lec.ex.service.BoardModifyViewService;
+import com.lec.ex.service.BoardReplyService;
+import com.lec.ex.service.BoardReplyViewService;
+import com.lec.ex.service.BoardWriteService;
 import com.lec.ex.service.JoinService;
 import com.lec.ex.service.MAllViewService;
 import com.lec.ex.service.MLoginService;
@@ -26,7 +33,7 @@ import com.lec.ex.service.Service;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private	int viewControl = 0;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actiondo(request, response);
 	}
@@ -55,8 +62,7 @@ public class FrontController extends HttpServlet {
 			service = new MemailConfirmService();
 			service.execute(request, response);
 			viewPage = "member/emailConfirm.jsp";
-		}
-		else if(command.equals("/join.do")) { // 회원가입 DB 처리
+		}else if(command.equals("/join.do")) { // 회원가입 DB 처리
 			service = new JoinService(); // execute메소드 : mId중복체크 후 회원가입
 			service.execute(request, response);
 			viewPage = "loginView.do";
@@ -85,19 +91,57 @@ public class FrontController extends HttpServlet {
 		////////////////////////////////////////////////////////////////
 		}else if(command.equals("/adminLoginView.do")) {
 			viewPage = "admin/adminLogin.jsp";
+			viewControl = 1;
 		}else if(command.equals("/adminLogin.do")) {
-			service = new ALoginService();
-			service.execute(request, response);
+			if(viewControl == 1) {
+				service = new ALoginService();
+				service.execute(request, response);
+				viewControl = 0;
+			}
 			viewPage = "allView.do";
 		}else if(command.equals("/allView.do")) { //회원 목록 출력(페이징처리)
 			service = new MAllViewService();
 			service.execute(request, response);
 			viewPage = "member/mAllView.jsp";
-		}
-	
 		////////////////////////////////////////////////////////////////
 		//////////////////////파일첨부 관련 요청/////////////////////////////
 		////////////////////////////////////////////////////////////////	
+		}else if(command.equals("/boardList.do")) {
+			service = new BoardListService();
+			service.execute(request, response);
+			viewPage = "fileBoard/boardList.jsp";
+		}else if(command.equals("/boardWriteView.do")) {
+			viewPage = "fileBoard/boardWrite.jsp";
+			viewControl = 1;
+		}else if(command.equals("/boardWrite.do")) {
+			if(viewControl == 1) {
+				service = new BoardWriteService();
+				service.execute(request, response);
+				viewControl = 0;
+			}
+			viewPage = "boardList.do";
+		}else if(command.equals("/boardContent.do")) {
+			service = new BoardContentService();
+			service.execute(request, response);
+			viewPage = "fileBoard/boardContent.jsp";
+		}else if(command.equals("/boardModifyView.do")) {
+			service = new BoardModifyViewService();
+			service.execute(request, response);
+			viewPage = "fileBoard/boardModify.jsp";
+		}else if(command.equals("/boardModify.do")) {
+			service = new BoardModifyService();
+			service.execute(request, response);
+			viewPage = "boardList.do";
+		}else if(command.equals("/boardReplyView.do")) {
+			service = new BoardReplyViewService();
+			service.execute(request, response);
+			viewPage = "fileBoard/boardReply.jsp";
+		}else if(command.equals("/boardReply.do")) {
+			service = new BoardReplyService();
+			service.execute(request, response);
+			viewPage = "boardList.do";
+		}
+	
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

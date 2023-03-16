@@ -16,17 +16,6 @@
 	</style>
 </head>
 <body>
-	<c:if test="${not empty  joinResult}">
-		<script>
-			alert('${joinResult}');
-		</script>
-	</c:if>
-	<c:if test="${not empty  joinErrorMsg}">
-		<script>
-			alert('${joinErrorMsg}');
-			history.back();
-		</script>
-	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<form action="${conPath }/adminLogin.do" method="post" id="content_form">
 		<input type="hidden" name="method" value="">

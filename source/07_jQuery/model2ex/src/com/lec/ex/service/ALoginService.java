@@ -20,9 +20,9 @@ public class ALoginService implements Service {
 			HttpSession session = request.getSession();
 			AdminDto admin = aDao.getAdmin(aid);
 			session.setAttribute("admin", admin);
-			session.setAttribute("loginMSG", "관리자 계정으로 들어오셨습니다.");
+			request.setAttribute("aLoginMSG", "관리자 계정으로 들어오셨습니다.");
 		}else { // 로그인 실패
-			request.setAttribute("loginErrorMsg", "관리자 계정으로 로그인이 실패되었습니다");
+			request.setAttribute("aLoginErrorMsg", "관리자 계정으로 로그인이 실패되었습니다");
 		}
 	}
 }

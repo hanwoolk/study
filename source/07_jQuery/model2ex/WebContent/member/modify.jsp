@@ -21,7 +21,7 @@
 	<jsp:include page="../main/header.jsp"/>
 	<c:if test="${empty member }">
 		<script>
-			location.href='${conPath}/loginView.do';
+			location.href='${conPath}/member/login.jsp?method=modify';
 		</script>
 	</c:if>
 	<form action="${conPath }/modify.do" method="post" enctype="multipart/form-data">

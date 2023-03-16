@@ -29,7 +29,8 @@
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<form action="${conPath }/login.do" method="post" id="content_form">
-		<input type="hidden" name="method" value="">
+		<input type="hidden" name="method" value="${param.method }">
+		<input type="hidden" name="fid" value="${param.fid }">
 		<h1>사용자 로그인</h1>
 		<table>
 			<tr>

@@ -1,10 +1,9 @@
-package com.lec.ex.controller;
+package com.lec.ex.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.ex.dao.BoardDao;
-import com.lec.ex.service.Service;
 
 public class BDeleteService implements Service {
 

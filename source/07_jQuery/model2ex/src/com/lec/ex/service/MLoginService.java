@@ -11,6 +11,8 @@ public class MLoginService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		String method = request.getParameter("method");
+		request.setAttribute("method", method);
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
 		MemberDao mDao = MemberDao.getInstance();

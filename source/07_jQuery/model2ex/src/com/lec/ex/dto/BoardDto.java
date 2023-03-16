@@ -3,6 +3,7 @@ package com.lec.ex.dto;
 import java.sql.Date;
 
 public class BoardDto {
+	private String	mname;
 	private	int 	fid;
 	private	String 	mid;
 	private	String 	ftitle;
@@ -28,6 +29,27 @@ public class BoardDto {
 		this.fstep = fstep;
 		this.findent = findent;
 		this.fip = fip;
+	}
+	public BoardDto(String mname, int fid, String mid, String ftitle, String fcontent, String ffilename, Date frdate, int fhit,
+			int fgroup, int fstep, int findent, String fip) {
+		this.mname = mname;
+		this.fid = fid;
+		this.mid = mid;
+		this.ftitle = ftitle;
+		this.fcontent = fcontent;
+		this.ffilename = ffilename;
+		this.frdate = frdate;
+		this.fhit = fhit;
+		this.fgroup = fgroup;
+		this.fstep = fstep;
+		this.findent = findent;
+		this.fip = fip;
+	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 	public int getFid() {
 		return fid;
@@ -97,7 +119,7 @@ public class BoardDto {
 	}
 	@Override
 	public String toString() {
-		return "BoardDto [fid=" + fid + ", mid=" + mid + ", ftitle=" + ftitle + ", fcontent=" + fcontent
+		return "BoardDto [mname=" + mname + ", fid=" + fid + ", mid=" + mid + ", ftitle=" + ftitle + ", fcontent=" + fcontent
 				+ ", ffilename=" + ffilename + ", frdate=" + frdate + ", fhit=" + fhit + ", fgroup=" + fgroup
 				+ ", fstep=" + fstep + ", findent=" + findent + ", fip=" + fip + "]";
 	}

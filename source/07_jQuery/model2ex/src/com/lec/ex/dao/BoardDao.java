@@ -15,8 +15,8 @@ import javax.sql.DataSource;
 import com.lec.ex.dto.BoardDto;
 
 public class BoardDao {
-	private final int SUCCESS = 1;
-	private final int FAIL = 0;
+	public static final int SUCCESS = 1;
+	public static final int FAIL = 0;
 	private	DataSource ds;
 	public	BoardDao() {
 		try {
@@ -102,9 +102,9 @@ public class BoardDao {
 		Connection			conn 	= null;
 		PreparedStatement	pstmt 	= null;
 		String sql = "INSERT INTO FILEBOARD (fID, mID, fTITLE, fCONTENT, fFILENAME," + 
-				"    fRDATE, fHIT, fGROUP, fSTEP, fINDENT, fIP)" + 
+				"    fHIT, fGROUP, fSTEP, fINDENT, fIP)" + 
 				"    VALUES ((SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD), ?,?,?," + 
-				"    ?,null,0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,?)";
+				"    ?,0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,?)";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -156,13 +156,14 @@ public class BoardDao {
 		Connection			conn 	= null;
 		PreparedStatement	pstmt 	= null;
 		ResultSet			rs		= null;
-		String sql = "SELECT * FROM FILEBOARD WHERE fID = ?";
+		String sql = "SELECT MNAME, M.MID MID, FTITLE, FCONTENT, FFILENAME , FRDATE, FHIT, FGROUP, FSTEP ,FINDENT ,FIP FROM FILEBOARD F, MVC_MEMBER M WHERE F.mID = M.mID AND fID = ?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fid);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				String	mname		= rs.getString("mname");
 				String 	mid			= rs.getString("mid");
 				String 	ftitle		= rs.getString("ftitle");
 				String	fcontent	= rs.getString("fcontent");
@@ -173,7 +174,8 @@ public class BoardDao {
 				int		fstep		= rs.getInt("fstep");
 				int		findent		= rs.getInt("findent");
 				String	fip			= rs.getString("fip");
-				dto = new BoardDto(fid, mid, ftitle, fcontent, ffilename, frdate, fhit, fgroup, fstep, findent, fip);
+				
+				dto = new BoardDto(mname, fid, mid, ftitle, fcontent, ffilename, frdate, fhit, fgroup, fstep, findent, fip);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

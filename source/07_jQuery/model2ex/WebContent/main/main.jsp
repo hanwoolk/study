@@ -16,9 +16,14 @@
 </style>
 </head>
 <body>
-	<c:if test="${not empty next }">
+	<c:if test="${param.method eq 'write'}">
 		<script>
-			location.href = '${conPath}/${next}';
+			location.href = '${conPath}/boardWriteView.do';
+		</script>
+	</c:if>
+	<c:if test="${param.method eq 'modify'}">
+		<script>
+			location.href = '${conPath}/boardModifyView.do?fid=${param.fid}';
 		</script>
 	</c:if>
 	<c:if test="${not empty loginErrorMsg }">

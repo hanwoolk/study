@@ -71,17 +71,17 @@ CREATE TABLE FILEBOARD(
 );
 -- DUMMY DATA(원글과 답글)
 INSERT INTO FILEBOARD (fID, mID, fTITLE, fCONTENT, fFILENAME,
-    fRDATE, fHIT, fGROUP, fSTEP, fINDENT, fIP)
+    fHIT, fGROUP, fSTEP, fINDENT, fIP)
     VALUES ((SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD), 'go','글 제목','본문',
-    'NOIMAGE.JPG',null,0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,'192.0.0.1');
+    'NOIMAGE.JPG',0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,'192.0.0.1');
 INSERT INTO FILEBOARD (fID, mID, fTITLE, fCONTENT, fFILENAME,
-    fRDATE, fHIT, fGROUP, fSTEP, fINDENT, fIP)
+    fHIT, fGROUP, fSTEP, fINDENT, fIP)
     VALUES ((SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD), 'gayun','글 제목2','본문2',
-    'NOIMAGE.JPG',null,0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,'192.0.0.1');
+    'NOIMAGE.JPG',0,(SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD),0,0,'192.0.0.1');
 INSERT INTO FILEBOARD (fID, mID, fTITLE, fCONTENT, fFILENAME,
-    fRDATE, fHIT, fGROUP, fSTEP, fINDENT, fIP)
+    fHIT, fGROUP, fSTEP, fINDENT, fIP)
     VALUES ((SELECT NVL(MAX(fID),0)+1 FROM FILEBOARD), 'gico','글1 답글 제목1','답문1',
-    'NOIMAGE.JPG',null,0,1,1,1,'192.0.0.1');
+    'NOIMAGE.JPG',0,1,1,1,'192.0.0.1');
 select * from fileboard order by fgroup desc, fstep;
 -------------------------------------------------------------------------------
 ---------------------------------- ADMIN --------------------------------------
