@@ -343,6 +343,7 @@ public class BoardDao {
 		}
 		return result;
 	}
+	//글 삭제
 	public int withrawalDelete(String mid) {
 		int result = FAIL;
 		Connection			conn 	= null;
