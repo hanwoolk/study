@@ -29,4 +29,12 @@ SELECT COUNT(*) CNT FROM MVC_MEMBER;
 DELETE FROM MVC_MEMBER WHERE MID='aaa';
 COMMIT;
 
+SELECT * FROM PROJECT;
 
+UPDATE PROJECT SET pNAME        = '프로젝트 수정',  
+				                  	 pSTARTDATE   = '2020-12-12',
+				                  	 pENDDATE     = '2023-11-11',
+										 pMEMBER	  = 30,
+										 pOP		  = 10,
+				                   	 pCONTENT     = '수정된 내용'  
+				            WHERE PNUM = 10;
