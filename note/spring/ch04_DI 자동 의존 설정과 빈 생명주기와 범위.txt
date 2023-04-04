@@ -1,0 +1,24 @@
+ch04_DI 자동 의존 설정과 빈 생명주기와 범위
+1. 객체간 의존 자동 연결 : @Autowired 어노테이션을 이용
+	- 한 개의 어플리케이션에서 생성하는 스프링 빈 객체는 많아지는 경우 사용
+	- 특정 타입의 빈 객체가 한 개밖에 존재하지 않는 경우가 많아서 의존 객체가 명확한 경우 사용 
+2. 스프링 컨테이너 생명 주기
+	- 스프링 컨테이너 생성 : GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+	- 스프링 컨테이너 설정 : ctx.load(“classpath:applicationCTX.xml”); ctx.refresh();
+	- 스프링 컨테이너 사용 : Student st = ctx.getBean(“student”,Student.class); st.getName();
+	- 스프링 컨테이너 소멸(자원해제) : ctx.close();
+3.	스프링 빈 생명 주기
+	- Implements EnvironmentAware – 인터페이스를 이용한 생명주기
+		① EnvironmentAware를 implements하면 오버라이드한 setEnvironment() 생성 : 빈이 만들어지기 전 수행 – 환경변수에 대한 변경이 생길 시에만 호출
+	- Implements InitializingBean, DisposableBean – 인터페이스를 이용한 생명주기 관리 방법
+		① InitializingBean을 implements하면 오라바이드한 afterPropertiesSet() 생성 : 빈 초기화 과정(ctx.refresh())에서 호출
+		② DisposableBean 을 implements하면 오버라이드한 destroy() 생성 : 빈 소멸과정(ctx.close())에서 호출됨
+			※ ctx.close()의 경우 컨테이너가 소멸 하는 단계. 컨테이너가 소멸 하면, 빈은 자동 소멸
+	- @PostConstruct, @preDestroy – 어노테이션을 이용한 생명주기 관리 방법
+		① @PostConstruct 어노테이션은 해당 빈이 생성된 후, 의존성 주입(Dependency Injection)이 완료된 후, 초기화 작업이 필요한 메서드에 지정
+		② @PreDestroy 어노테이션은 해당 빈이 소멸되기 직전에 실행할 메서드에 지정, 객체가 소멸되기 전 필요한 정리 작업을 수행하는 데 사용
+	-  Xml에 추가 : <context:annotation-config/>
+4. 스프링 빈 범위
+	- 스프링 컨테이너가 생성되고, 스프링 빈이 생성될 때, 생성된 스프링 빈은 scope를 가지고 있음
+	- 범위란 객체가 어디까지 영향을 미치는지 결정하는 것
+	- 기본이 scope="singleton" 이고 scope=" prototype"로 설정 가능

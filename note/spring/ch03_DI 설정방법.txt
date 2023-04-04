@@ -1,0 +1,7 @@
+ch03 DI 설정방법
+1. XML 파일을 이용한 DI 설정방법 : AbstractApplicationContext를 통해서 GenericXmlApplicationContext를 이용
+2. Java(어노테이션)를 이용한 DI 설정방법 : AnnotationConfigApplicationContext라는 클래스를 통해 어노테이션을 이용
+3. XML과 Java(어노테이션)를 같이 사용하여 스프링을 설정하고 컨테이너를 만들고 컴포넌트를 생성
+	(1) xml 파일에 Java파일을 포함시켜 사용하는 방법
+	(2) Java파일에 xml 파일을 포함시켜 사용하는 방법
+
