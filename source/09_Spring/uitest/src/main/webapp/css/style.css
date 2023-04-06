@@ -1,0 +1,5 @@
+@charset "UTF-8";
+body{background-color:lightyellow}
+input[type=text], input[type=number]{width:100%}
+#right{text-align:right; color:red;}
+#center{text-align:center;}
