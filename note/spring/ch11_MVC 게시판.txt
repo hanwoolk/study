@@ -1,0 +1,28 @@
+ch11 MVC 게시판
+
+기존 JSP에서 만들었던 MVC model2와의 변경점
+
+1. @RequestMapping 어노테이션을 이용한 controller 변경
+
+ex)
+	@RequestMapping(value="delete", method = RequestMethod.GET)
+		public String delete(int bid, Model model) {
+			model.addAttribute("bid", bid);
+			service = new BDeleteService();
+			service.execute(model);
+			return "forward:list.do";
+		}
+
+2. model과 map을 사용하여 service 변경
+
+ex)
+	public class BDeleteService implements BService {
+		@Override
+		public void execute(Model model) {
+			Map<String, Object> map  = model.asMap();
+			int bid = (Integer)map.get("bid");
+			BoardDao boardDao = BoardDao.getInstance();
+			model.addAttribute("deleteResult", boardDao.delete(bid));
+		}
+	}
+
