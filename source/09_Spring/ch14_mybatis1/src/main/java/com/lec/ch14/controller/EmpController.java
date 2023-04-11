@@ -21,6 +21,8 @@ public class EmpController {
 	public List<Dept> deptList(){
 		return service.deptList();
 	}
+	// emp.do?ename=m&deptno=20
+	// emp.do
 	@RequestMapping(value="emp", method=RequestMethod.GET)
 	public String emp(@ModelAttribute("schEmp") Emp schEmp, Model model) {
 		model.addAttribute("empList", service.empList(schEmp));

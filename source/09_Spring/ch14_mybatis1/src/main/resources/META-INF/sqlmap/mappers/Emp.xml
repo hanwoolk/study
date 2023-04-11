@@ -14,7 +14,7 @@
 		<result property="deptno" column="deptno"/>
 	</resultMap>
 	<select id="empList" parameterType="Emp" resultMap="EmpResult">
-
+		<!-- <![CDATA[ -->
 			SELECT * FROM EMP WHERE 1=1
 			<if test="ename!=null and ename!=''">
 				AND ENAME LIKE '%'||#{ename}||'%'
@@ -25,6 +25,6 @@
 			<if test="deptno!=0">
 				AND DEPTNO=#{deptno}
 			</if>
-
+		<!-- ]]> -->
 	</select>
 </mapper>

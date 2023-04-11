@@ -24,10 +24,10 @@ public class EmpServiceImpl implements EmpService {
 	public List<Emp> empList(Emp schEmp) {
 		// schEmp.ename = s->S / schEmp.job = e->E 
 		if(schEmp.getEname()!=null) {
-			schEmp.setEname(schEmp.getEname());
+			schEmp.setEname(schEmp.getEname().toUpperCase());
 		}
 		if(schEmp.getJob()!=null) {
-			schEmp.setJob(schEmp.getJob());
+			schEmp.setJob(schEmp.getJob().toUpperCase());
 		}
 		return eDao.empList(schEmp);
 	}
