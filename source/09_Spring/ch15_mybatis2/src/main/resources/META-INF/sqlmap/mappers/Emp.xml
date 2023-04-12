@@ -24,7 +24,7 @@
 	<select id="empDeptList" parameterType="Emp" resultMap="EmpResult">
 		SELECT * FROM 
     (SELECT ROWNUM RN, A.* FROM 
-        (SELECT E.*, DNAME, LOC FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO)A)
+        (SELECT E.*, DNAME, LOC FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO ORDER BY EMPNO)A)
     WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
 	<select id="totCnt" resultType="int">
@@ -40,14 +40,14 @@
 		INSERT INTO EMP VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
 	</insert>
 	<update id="update" parameterType="Emp">
-		UPDATE EMP SET ENAME='#{ename},
+		UPDATE EMP SET ENAME=#{ename},
 	               JOB=#{job},
 	               MGR=#{mgr},
 	               HIREDATE=#{hiredate},
 	               SAL=#{sal},
 	               COMM=#{comm},
 	               DEPTNO=#{deptno}
-	        WHERE EMPNO=#{empno};
+	        WHERE EMPNO=#{empno}
 	</update>
 	<delete id="delete" parameterType="int">
 		DELETE FROM EMP WHERE EMPNO=#{empno}

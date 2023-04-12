@@ -1,5 +1,5 @@
-<%@page import="com.lec.ch12.dto.BoardDto"%>
-<%@page import="com.lec.ch12.dao.BoardDao"%>
+<%@page import="com.lec.ch17.dto.BoardDto"%>
+<%@page import="com.lec.ch17.dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
