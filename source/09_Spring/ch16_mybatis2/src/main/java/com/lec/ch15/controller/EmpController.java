@@ -82,7 +82,6 @@ public class EmpController {
 	@RequestMapping(value="write", method=RequestMethod.POST)
 	public String write(Emp emp, Model model ) {
 		try {
-			System.out.println("emp : " + emp + "저장");
 			model.addAttribute("writeResult",empService.insert(emp));
 		}catch(Exception e) {
 			System.out.println("예외 :" + e.getMessage());

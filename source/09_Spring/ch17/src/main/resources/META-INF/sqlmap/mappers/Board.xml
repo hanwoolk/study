@@ -15,28 +15,37 @@
 		<result property="bindent" column="bindent"/>
 		<result property="bip" column="bip"/>
 	</resultMap>
-	<select id="list" resultMap="BoardResult">
+	<select id="boardList" parameterType="Board" resultMap="BoardResult">
 		SELECT *  
 				  FROM (SELECT ROWNUM RN, A.*  
 				        FROM (SELECT * FROM MVC_BOARD ORDER BY BGROUP DESC, BSTEP) A) 
 				  WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<select id="getBoardTotCnt" resultType="int">
+	<select id="boardTotCnt" resultType="int">
 		SELECT COUNT(*) FROM MVC_BOARD
 	</select>
-	<insert id="write" parameterType="BoardDto">
+	<insert id="boardWrite" parameterType="Board">
 		INSERT INTO MVC_BOARD (BID, BNAME, BTITLE, BCONTENT, 
 												BGROUP, BSTEP, BINDENT, BIP) 
 					 VALUES (MVC_BOARD_SEQ.NEXTVAL, #{bname}, #{btitle}, #{bcontent},
 												MVC_BOARD_SEQ.CURRVAL, 0, 0, #{bip})
 	</insert>
-	<update id="hitUp" parameterType="BoardDto" >
+	<update id="boardHitUp" parameterType="int">
 		UPDATE MVC_BOARD SET bHIT = bHIT + 1 WHERE bID = #{bid} 
 	</update>
-	<select id="content" parameterType="BoardDto" resultType="BoardResult">
+	<select id="boardDetail" parameterType="int" resultType="Board">
 	  SELECT * FROM MVC_BOARD WHERE bID = #{bid}
 	</select>
-	<update id="modify" parameterType="BoardDto">
+	<update id="boardReplyPreStep" parameterType="Board">
+		UPDATE MVC_BOARD SET BSTEP = BSTEP + 1  
+				  WHERE BGROUP = #{bgroup} AND BSTEP > #{bstep}
+	</update>
+	<insert id="boardReply" parameterType="Board">
+		INSERT INTO MVC_BOARD (BID, BNAME, BTITLE, BCONTENT,
+											 BGROUP, BSTEP, BINDENT, BIP) 
+				  VALUES (MVC_BOARD_SEQ.NEXTVAL, #{bname}, #{btitle}, #{bcontent}, #{bgroup}, #{bstep}+1, #{bindent}+1, #{bip})
+	</insert>
+	<update id="boardModify" parameterType="Board">
 		UPDATE MVC_BOARD 
 					  SET BNAME = #{bname},
 					      BTITLE = #{btitle}, 
@@ -44,16 +53,7 @@
 					      BIP = #{bip} 
 					  WHERE BID = #{bid}
 	</update>
-	<delete id="delete" parameterType="int">
+	<delete id="boardDelete" parameterType="int">
 		DELETE FROM MVC_BOARD WHERE bID = #{bid}
 	</delete>
-	<update id="preReplyStep" parameterType="BoardDto">
-		UPDATE MVC_BOARD SET BSTEP = BSTEP + 1  
-				  WHERE BGROUP = #{bgroup} AND BSTEP > #{bstep}
-	</update>
-	<insert id="reply" parameterType="BoardDto">
-		INSERT INTO MVC_BOARD (BID, BNAME, BTITLE, BCONTENT,
-											 BGROUP, BSTEP, BINDENT, BIP) 
-				  VALUES (MVC_BOARD_SEQ.NEXTVAL, #{bname}, #{btitle}, #{bcontent}, #{bgroup}, #{bstep+1}, #{bindent+1}, #{bip})
-	</insert>
 </mapper>

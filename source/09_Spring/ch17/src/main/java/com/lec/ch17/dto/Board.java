@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardDto {
+public class Board {
 	private	int			bid;
 	private	String		bname;
 	private	String		btitle;

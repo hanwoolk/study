@@ -1,0 +1,40 @@
+ch15 Mybatis
+
+XML에서 동적 SQL 처리
+OGNL(Object Graph Navigation Language)
+	(ex) <if ~  <forEach~
+	- if 엘리먼트 : 모든 조건에 대해 처리하고 만족하는 조건의 결과를 모두 적용
+	- 동적 QUERY : 위와 같이 SQL 구문이 조건에 따라서 변경되는 것을 의미
+		<select id=”selData”>
+			SELECT * FROM EMP 
+			<if test=”ename != null”> WHERE ENAME=#{ENAME} </if>
+		</select>
+	- 여러 논리 조건
+		<if test=”ename!=null and sal !=0”>
+	- choose(when, otherwise) : 조건 지정과 그 외에 대한 처리를 동적인 SQL에서 진행할 때 활용
+		<select id="empList" resultMap="EmpMap" parameterType="Emp">
+			select * from emp where 1=1
+			<choose>
+				<when test="sal>5000"> and deptno=10 </when>
+				<when test="sal>4000"> and deptno=20 </when>
+				<when test="sal>1000"> and deptno=30 </when>
+			</choose>
+		</select>
+	- trim(where) 엘리먼트 : if 엘리먼트가 조건 처리에서 where 구문에 대한 처리를 보완하기 위해 사용
+		· Prefix : 처리 후 엘리먼트 내용이 있으면 앞에 붙여줌
+		· prefixOverrides : 처리 후 앞에 해당 문자 있으면 자동으로 지워줌
+			Select * from emp 
+			// Where 1=1 구분을 활용하지 않으면
+			<where>
+				<trim prefix=”WHERE” prefixOverrides=”AND | OR”>
+				<if test=”ename != null>ename=#{ename}</if>
+	-  foreach 엘리먼트 : 동적 SQL을 loop문으로 반복처리 해야 할 경우
+		· 조회조건에서 부서를 여러 개 검색 조건으로 처리할 때
+			SELECT * FROM EMP WHERE DEPTNO IN(10,20,30);
+		· 속성  <foreach collection=”” item=””
+			Collection : 배열의 목록 리스트를 가져옴 ex) jstl items
+			Item : 배열의 목록 단위 (ex) jstl의 var
+			Index : 몇 번째 값인지 나타내는 인덱스. 0부터 시작
+				Select * from emp where 1=1 
+				<if test=”deptnos != null”>  -> getDeptnos()가 있어야 함
+		 		Deptno in <foreach collection=”deptnos” item=”chdeptno”

@@ -10,10 +10,10 @@ public class BContentService implements Service {
 
 	@Override
 	public void execute(Model model) {
-		Map<String, Object> map = model.asMap();
-		int bid = (Integer) map.get("bid");
-		BoardDao bDao = new BoardDao();
-		model.addAttribute("contentBoard",bDao.content(bid));
+//		Map<String, Object> map = model.asMap();
+//		int bid = (Integer) map.get("bid");
+//		BoardDao bDao = new BoardDao();
+//		model.addAttribute("contentBoard",bDao.content(bid));
 	}
 
 }

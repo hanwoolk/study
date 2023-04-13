@@ -1,0 +1,21 @@
+ch14 Mybatis
+
+1. Mybatis?
+	- Spring의 JDBC Template을 통해 줄어든 코드의 양을 Mybatis를 이용하여 더욱 수 있음
+	- 자바 코드가 아닌 xml 파일로 DB에 엑세스
+	- DB접근을 자바가 아닌 xml로 대체하도록 하는 라이브러리
+	- SQL 코드를 자바코드와 분리시키는데 목적이 있음
+
+2. 진행순서
+	- pom.xml:필요라이브러리 의존추가
+	- web.xml :한글처리,  *.do
+	- db.properties : DB환경설정정보
+	- root-context.xml에 dataSource 빈생성
+	- DTO 생성
+	- xml 생성 :mapper(empList,deptList) + config
+	- root-context.xml에 SqlSessionfactoryBean, sessionTemplate(SqlSessionTemplate) 빈생성
+	- 실행 첫화면 : css 추가해서 테스트
+	- DAO 생성
+	- Service 셍성
+	- Controller 생성
+	- view단 생성

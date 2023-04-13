@@ -1,0 +1,125 @@
+ch13 FileUpload 예시
+1. Pom.xml에 의존추가
+	<!-- 파일업로드 -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.5</version>
+	</dependency>
+2. Web.xml 한글필터처리부분 추가
+	<!-- 한글처리 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+3. Servlet-context.xml (웹과 관련된 설정) cf.웹이외의 설정부분은 root-context.xml
+	- multipartResolver Bean생성
+		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  		<beans:property name="maxUploadSize" value="10485760"/>
+		</beans:bean>
+	- maxUploadSize : 최대 업로드 가능한 바이트 크기
+	- maxInMemorySize : 디스크에 임시파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기, 1M의 경우1024*1024=10485760 ,-1은 용량 제한 없음
+	- defaultEncoding : 요청을 파싱할 때 사용할 캐릭터 인코딩. 기본은 ISO-8859-1
+
+4. Servlet-context.xml 에 추가
+	<resources mapping="/upload/**" location="/upload/" />
+
+5. view 
+	file_input.jsp
+	- <form action="fileUpload" method="post" enctype="multipart/form-data">
+	- <p>첨부파일1 : <input type="file" name="file1"></p>
+	- <p>첨부파일1 : <input type="file" name="file2"></p>
+	- <p>첨부파일1 : <input type="file" name="file3"></p>
+
+6. Controller
+	@RequestMapping(value="fileUpload", method = RequestMethod.POST)
+	public ModelAndView fileupload(MultipartHttpServletRequest mRequest, ModelAndView mav) {
+		if(fService.fileUp(mRequest, mav)) {
+			mav.addObject("fileResult","파일 업로드 성공");
+		}else {
+			mav.addObject("fileResult","파일 업로드 실패");
+		}
+		mav.setViewName("fileResult");
+		return mav;
+	}
+
+7. Service
+	Upload.java
+	@Service
+	public class FileUploadService {
+		public boolean fileUp(MultipartHttpServletRequest mRequest, ModelAndView mav) {
+			boolean isUpload = false;
+			String uploadPath = mRequest.getRealPath("upload/");
+			String backupPath = "D:/......."; // 파일 저장 실제 경로
+			String[] fileNames = new String[3];
+			int i = 0;
+			Iterator<String> params = mRequest.getFileNames(); // file1, file2, file3
+			while(params.hasNext()) {
+				String param = params.next();
+				System.out.println(i+"번째 파라미터 : "+param);
+				MultipartFile mFile = mRequest.getFile(param); // 파라미터의 파일 객체
+				String originalFileName = mFile.getOriginalFilename(); // 업로드 했을 때 원래 파일 이름
+				fileNames[i] = originalFileName;
+				System.out.println(originalFileName==null? "null입니다":fileNames[i].equals("")? "빈칸입니다":"빈칸이 아닙니다");
+				// 첨부를 안 하면 빈칸
+				if(fileNames[i]!=null && !fileNames[i].equals("")) { // 첨부함
+					if(new File(uploadPath+fileNames[i]).exists()) {
+						// 첨부파일과 같은 이름의 파일이 서버에 존재하는 경우 -> 파일이름을 변경
+						fileNames[i] = System.currentTimeMillis() + fileNames[i];
+					}// if - 파일이름 변경
+					try {
+						mFile.transferTo(new File(uploadPath+fileNames[i])); // 서버에 파일을 저장하는 로직
+						System.out.println("서버에 저장된 파일 : "+uploadPath+fileNames[i]);
+						System.out.println("백업위해 복사할 파일:" +backupPath+fileNames[i]);
+						isUpload = filecopy(uploadPath+fileNames[i], backupPath+fileNames[i]);//backup
+					} catch (IOException e) {
+						System.out.println(e.getMessage());
+					} 
+				}//if
+				i++;
+			}// while
+			mav.addObject("fileNames", fileNames);		
+			return isUpload;
+		}
+		private boolean filecopy(String serverFile, String backupFile) {
+			boolean isCopy = false;
+			FileInputStream is = null;
+			FileOutputStream os = null;
+			try {
+				File file = new File(serverFile);
+				is = new FileInputStream(serverFile);
+				os = new FileOutputStream(backupFile);
+				byte[] buff = new byte[(int)file.length()];
+				while(true) {
+					int nReadByte = is.read(buff);
+					if(nReadByte == -1) break;
+					os.write(buff, 0, nReadByte);
+				}
+				isCopy = true;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				try {
+					if(os!=null) os.close();
+					if(is!=null) is.close();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return isCopy;
+		}
+	}
+
