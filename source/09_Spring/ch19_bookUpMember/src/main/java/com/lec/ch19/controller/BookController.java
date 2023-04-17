@@ -20,7 +20,7 @@ public class BookController {
 	@RequestMapping(params="method=list" , method=RequestMethod.GET)
 	public String list(String pageNum, Model model) {
 		model.addAttribute("bookList",bookService.bookList(pageNum));
-		model.addAttribute("paging",new Paging(bookService.totCntBook(), pageNum));
+		model.addAttribute("paging",new Paging(bookService.totCntBook(), pageNum,3,3));
 		return "book/list";
 	}
 	@RequestMapping(params="method=detail" , method=RequestMethod.GET)
@@ -47,14 +47,4 @@ public class BookController {
 		int registerResult = bookService.registerBook(mRequest, book);
 		return "redirect:book.do?method=list&registerResult="+registerResult;
 	}
-//	@RequestMapping(params="method=" , method=RequestMethod.GET)
-//	public String () {
-//		return "book/";
-//	}
-//	@RequestMapping(params="method=" , method=RequestMethod.GET)
-//	public String () {
-//		return "book/";
-//	}
-
-	
 }

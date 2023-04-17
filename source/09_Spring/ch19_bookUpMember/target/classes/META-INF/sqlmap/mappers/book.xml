@@ -47,7 +47,7 @@
 			INSERT INTO BOOK (bNUM, bTITLE, bWRITER, bRDATE, bIMG2, bINFO)
    			VALUES (BOOK_SQ.NEXTVAL, #{btitle}, #{bwriter}, #{brdate}, #{bimg2}, #{binfo})
 		</if>
-		<if test="bimg1=='' and bimg2!=''">
+		<if test="bimg1=='' and bimg2==''">
 			INSERT INTO BOOK (bNUM, bTITLE, bWRITER, bRDATE, bINFO)
     		VALUES (BOOK_SQ.NEXTVAL, #{btitle},#{bwriter},#{brdate}, #{binfo})
 		</if>

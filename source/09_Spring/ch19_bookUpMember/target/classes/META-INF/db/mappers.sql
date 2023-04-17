@@ -8,7 +8,7 @@ WHERE BNUM BETWEEN 1 AND 5;
 SELECT * FROM 
     (SELECT ROWNUM RN, A.* FROM 
         (SELECT * FROM BOOK ORDER BY BTITLE)A) 
-WHERE BNUM BETWEEN 1 AND 3;
+WHERE BNUM BETWEEN 1 AND 10;
 -- id = totCntBook (등록된 책 갯수)
 SELECT COUNT(*) FROM BOOK;
 -- id = getDetailBook ( 책번호로 dto 가져오기)
@@ -35,7 +35,7 @@ SELECT COUNT(*) FROM MEMBER WHERE MID='aaa';
 SELECT * FROM MEMBER;
 -- id = joinMember(회원가입)
 INSERT INTO MEMBER(MID, MPW, MNAME, MMAIL, MPOST, MADDR) VALUES ('asdf','1','김이박','zool212@naver.com','11223','경기');
--- id = getDetailMember(mid로 Mwmber dto 가져오기
+-- id = getDetailMember(mid로 Member dto 가져오기
 SELECT * FROM MEMBER WHERE MID = 'asdf';
 -- id = modifyMember(회원정보 수정)
 UPDATE MEMBER SET MPW = '111',

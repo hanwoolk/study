@@ -13,24 +13,24 @@
 	</resultMap>
 	
 	<select id="idConfirm" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM MEMBER WHERE MID=${mid}
+		SELECT COUNT(*) FROM MEMBER WHERE MID=#{mid, jdbcType=VARCHAR}
 	</select>
 	
 	<insert id="joinMember" parameterType="Member">
 		INSERT INTO MEMBER(MID, MPW, MNAME, MMAIL, MPOST, MADDR) 
-			VALUES (${mid}, ${mpw}, ${mname}, ${mmail}, ${mpost}, ${maddr});
+			VALUES (#{mid}, #{mpw}, #{mname}, #{mmail}, #{mpost}, #{maddr})
 	</insert>
 	
-	<select id="getDetailMember" parameterType="int" resultType="Member">
-		SELECT * FROM MEMBER WHERE MID = ${mid}
+	<select id="getDetailMember" parameterType="String" resultType="Member">
+		SELECT * FROM MEMBER WHERE MID = #{mid}
 	</select>
 	
 	<update id="modifyMember" parameterType="Member">
-		UPDATE MEMBER SET MPW = ${mpw},
-                  MNAME = ${mname},
-                  MMAIL = ${mmail},
-                  MPOST = ${mpost},
-                  MADDR = ${maddr}
-            WHERE MID = ${mid}
+		UPDATE MEMBER SET MPW = #{mpw},
+                  MNAME = #{mname},
+                  MMAIL = #{mmail},
+                  MPOST = #{mpost},
+                  MADDR = #{maddr}
+            WHERE MID = #{mid}
 	</update>
 </mapper>

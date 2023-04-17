@@ -15,7 +15,6 @@ root-context.xml 빈추가부분
 	<bean id="sqlSessionTemplate"
 	class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
-	</bean>
 
 servlet-context.xml 빈 추가 부분
 	<context:property-placeholder location="classpath:META-INF/property/mail.properties"/>
