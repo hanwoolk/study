@@ -1,5 +1,10 @@
-방문해 주셔서 감사합니다.
-
-본 공유공간은 이젠 아카데미에서 제공하는
-
-"디지털컨버전스 풀스택 웹개발자 과정"을 수료하며 작성한 내용입니다.
+▶교육 및 연수사항 풀스택 웹 개발자 과정
+이젠아카데미(신촌지점) / 22.11.28 ~ 23.05.12(900시간)↵
+▶ 사용가능 기술 요약
+language : JAVA, JSP
+database : Oracle, MySQL
+framework: Spring Framework, MyBatis Framework<
+IDE tool: Eclipse, Spring tool suite, sqlDeveloper, eXERD, VisualStudio, VisualStudio Code,
+IntelliJ
+web: HTML, CSS, JavaScript, jQuery, Ajax, jQueryUI, Bootstrap, React, Node.js
+OS : windows, MacOS, Linux(Cent OS, ubuntu)
